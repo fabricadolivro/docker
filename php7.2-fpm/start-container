@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+#echo "* * * * * cd /var/www/html && php artisan schedule:run >> /dev/null 2>&1
+# This extra line makes it a valid cron" > scheduler.txt
+
+#crontab scheduler.txt
+
+#/etc/init.d/cron start
+
+/usr/bin/supervisord /etc/supervisor/conf.d/supervisord.conf
+
+php-fpm

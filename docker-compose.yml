@@ -1,0 +1,191 @@
+services:
+
+  nginx:
+    image: nginx:alpine
+    container_name: "${APP_SLUG}-nginx"
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - '../admin-backend:/var/www/admin-backend'
+      - '../admin-frontend:/srv/admin-frontend'
+#      - '../administrative:/var/www/administrative'
+      - '../ecommerce-backend:/var/www/ecommerce-backend'
+      - '../ecommerce-frontend:/srv/ecommerce-frontend'
+#      - '../editor-backend-api:/var/www/editor-backend-api'
+#      - '../editor-frontend:/srv/editor-frontend'
+#    depends_on:
+#      - node
+#      - php72
+#      - php84
+#      - mysql
+#      - pgsql
+#      - redis
+    networks:
+      - fabricadolivro
+  
+  node:
+    image: node:alpine
+    container_name: "${APP_SLUG}-node"
+    entrypoint: /bin/sh
+    tty: true
+    ports:
+      - "3000:3000" # ecommerce-frontend
+      - "3001:3001" # admin-frontend
+#    working_dir: /srv
+    volumes:
+      - '../admin-frontend:/srv/admin-frontend'
+      - '../ecommerce-frontend:/srv/ecommerce-frontend'
+    links:
+      - 'nginx:admin-frontend.fabricadolivro.lab'
+      - 'nginx:ecommerce-frontend.fabricadolivro.lab'
+    networks:
+      - fabricadolivro
+
+  php72:
+    image: "${APP_SLUG}-php7.2-fpm"
+    container_name: "${APP_SLUG}-php72"
+    restart: unless-stopped
+    build:
+      context: ./php7.2-fpm
+      dockerfile: Dockerfile
+    ports:
+      - "${PHP7_2_FPM_PORT}:9000"
+    volumes:
+#      - '../administrative:/var/www/administrative'
+      - '../ecommerce-backend:/var/www/ecommerce-backend'
+#      - '../editor-backend-api:/var/www/editor-backend-api'
+#      - '../editor-frontend:/var/www/editor-frontend'
+    links:
+#      - 'nginx:administrative.fabricadolivro.lab'
+      - 'nginx:ecommerce-backend.fabricadolivro.lab'
+#      - 'nginx:editor-backend-api.fabricadolivro.lab'
+#      - 'nginx:editor-frontend.fabricadolivro.lab'
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - fabricadolivro
+
+  php84:
+    image: "${APP_SLUG}-php8.4-fpm"
+    container_name: "${APP_SLUG}-php84"
+    restart: unless-stopped
+    build:
+      context: ./php8.4-fpm
+      dockerfile: Dockerfile
+#    tty: true
+    ports:
+      - "${PHP8_4_FPM_PORT}:9000"
+    volumes:
+      - '../admin-backend:/var/www/admin-backend'
+    links:
+      - 'nginx:admin-backend.fabricadolivro.lab'
+#    environment:
+#      PHP_IDE_CONFIG: "serverName=api"
+#      DB_HOST: ${DB_HOST}
+#      DB_PORT: ${DB_PORT}
+#      DB_DATABASE: ${DB_DATABASE}
+#      DB_USERNAME: ${DB_USERNAME}
+#      DB_PASSWORD: ${DB_PASSWORD}
+#    extra_hosts:
+#      - "host.docker.internal:host-gateway"
+#    expose:
+#      - ${PHP8_4_FPM_PORT}
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - fabricadolivro
+
+  mysql:
+    image: mysql:8.4.3
+    container_name: "${APP_SLUG}-mysql8"
+    restart: always
+    tty: true
+#    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "${FORWARD_DB_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    volumes:
+      - './mysql:/var/lib/mysql'
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping" ]
+    networks:
+      - fabricadolivro
+
+#  pgsql:
+#    image: postgres
+#    container_name: "${APP_SLUG}-pgsql"
+#    restart: always
+#    ports:
+#      - "${POSTGRES_PORT}:5432"
+#    volumes:
+#      - ./postgresql/data:/var/lib/postgresql/data
+#    environment:
+#      POSTGRES_PASSWORD: ${DB_PASSWORD}
+#      POSTGRES_USER: ${DB_USERNAME}
+#      POSTGRES_DB: ${DB_DATABASE}
+#    networks:
+#      - fabricadolivro
+
+  redis:
+    image: redis:alpine
+    container_name: "${APP_SLUG}-redis"
+    ports:
+      - "${REDIS_PORT}:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+    networks:
+      - fabricadolivro
+
+  mongo:
+    container_name: "${APP_SLUG}-mongo6"
+    image: mongo:6.0
+    restart: always
+    ports:
+      - "${MONGO_PORT}:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    volumes:
+      - ./mongodb:/data/db
+    networks:
+      - fabricadolivro
+
+#  kafka:
+#    image: bitnami/kafka:3
+#    ports:
+#      - '9092:9092'
+#    environment:
+#      KAFKA_CFG_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+#      ALLOW_PLAINTEXT_LISTENER: 'yes'
+#    depends_on:
+#      - zookeeper
+#    networks:
+#      - fabricadolivro
+#
+#  kafka-ui:
+#    image: provectuslabs/kafka-ui
+#    ports:
+#      - '8080:8080'
+#    environment:
+#      KAFKA_CLUSTERS_0_NAME: 'local'
+#      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: 'kafka:9092'
+#    depends_on:
+#      - zookeeper
+#    networks:
+#      - fabricadolivro
+
+networks:
+  fabricadolivro:
+    driver: bridge
