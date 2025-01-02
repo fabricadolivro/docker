@@ -4,7 +4,7 @@
 
 # Guia de Ambiente de Trabalho
 
-<details>
+<details open>
   <summary>
     <strong>WSL</strong>
   </summary>
@@ -14,7 +14,6 @@
 - [Instalação do WSL 2 (Windows 10/11)](#instalação-do-wsl-2-windows-1011)
     - [Windows Update](#windows-update)
     - [Instale o Ubuntu](#instale-o-ubuntu)
-- [Ferramentas](#ferramentas)
     - [Terminal do Windows](#terminal-do-windows)
     - [Integração com VSCode (opcional)](#integração-com-vscode-opcional)
 </details>
@@ -112,8 +111,6 @@ Crie um nome de usuário sem espaço e caracteres especiais) e uma **senha** (defi
 
 Parabéns, seu WSL2 já está funcionando!
 
-## Ferramentas
-
 ### Terminal do Windows
 
 Recomendamos o uso do [Windows Terminal](https://docs.microsoft.com/pt-br/windows/terminal/get-started) como terminal padrão para desenvolvimento no Windows.
@@ -141,14 +138,35 @@ Se o VSCode não estiver desta forma ao abrir projetos dentro do Linux, então o m
 
 # Docker 
 
-Docker é uma plataforma open source que possibilita o empacotamento de uma aplicação dentro de um container. Uma aplicação consegue se adequar e rodar em qualquer máquina que tenha essa tecnologia instalada.
+O Docker é uma plataforma open source de containers que permite empacotar aplicativos e suas dependências em um ambiente isolado e portátil.
 
-## Modos de usar Docker no Windows
+### Vantagens
 
-* 1. *Obsoleto* Docker Toolbox
-* 2. *Obsoleto* Docker Desktop com Hyper-V
-* 3. [Docker Desktop com WSL2](#docker-desktop-com-wsl2).
-* 4. [Docker Engine (Docker Nativo) diretamente instalado no WSL2](#docker-engine-docker-nativo-diretamente-instalado-no-wsl2).
+O Docker é ideal para desenvolvimento, CI/CD e implantação em escala por ser mais eficiente que VMS, ambientes em nuvem e locais nativos.
+
+1. **Leveza**: Containers compartilham o kernel do sistema operacional, consumindo menos recursos comparado a uma VM que precisa de um sistema operacional completo.
+2. **Velocidade**: Inicializam em segundos, enquanto VMs e Clouds podem levar minutos.
+3. **Portabilidade**: Os containers funcionam da mesma forma em qualquer ambiente que suporte Docker.
+4. **Gerenciamento Simples**: Menor overhead para criar, destruir ou replicar ambientes.
+5. **Melhor Utilização de Recursos**: Mais containers podem rodar no mesmo host, otimizando hardware se comparados com outras opções.
+
+### Desvantagens
+
+1. Desempenho: Containers podem ter overhead em comparação a processos nativos.
+2. Compatibilidade: Nem todos os aplicativos ou serviços suportam execução em containers.
+3. Segurança: Não indicado para ambiente production. Menos isolamento que VMs, pois compartilham o kernel do host.
+4. Curva de aprendizado: Configurar e gerenciar containers pode ser complexo para iniciantes.
+
+## Uso do Docker no Windows
+
+Há ao menos 4 modos de usar o Docker no Windows, no entanto iremos optar pelo **Docker Desktop com WSL2**.
+
+> - **Docker Toolbox** - o desempenho do Toolbox pode ser muito ruim. Recomendado para versões antigas do Windows (Xp, Vista, 7, 8 e 8.1);
+> - **Docker Desktop com Hyper-V** - Necessita da versão **PRO** do Windows 10/11, portanto é necessário compra-la.
+> - **Docker Engine** (Docker Nativo) - diretamente instalado no WSL 2 é viável, todavia a manutenção e segurança pode ser um desafiante para usuários iniciantes.
+
+Docker Desktop com WSL2 tem um grande desempenho e consome menos recursos quando comparado ao Docker Toolbox ou Docker Desktop com Hyper-V.
+
 
 
 
