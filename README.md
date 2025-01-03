@@ -9,7 +9,7 @@
     <strong>WSL</strong>
   </summary>
 
-- [O que é?](#o-que-é)
+- [O que é WSL 2?](#o-que-é-wsl-2)
 - [Requisitos mínimos](#requisitos-mínimos)
 - [Instalação do WSL 2 (Windows 10/11)](#instalação-do-wsl-2-windows-1011)
     - [Windows Update](#windows-update)
@@ -24,25 +24,24 @@
   </summary>
 
 - [O que é o Docker](#o-que-é-docker)
-- [Modo de usar Docker no Windows](#modos-de-usar-docker-no-windows)
-  - [1 - (Obsoleto) Docker Toolbox](#1-obsoleto-docker-toolbox)
-  - [2 - (Obsoleto) Docker Desktop com Hyper-V](#2-obsoleto-docker-desktop-com-hyper-v)
-  - [3 - Docker Desktop com WSL 2](#3-docker-desktop-com-wsl2)
-    - [Vantagens](#docker-desktop-vantagens)
-    - [Desvantagens](#docker-desktop-desvantagens)
-  - [4 - Docker Engine (Docker Nativo) diretamente instalado no WSL2](#4-docker-engine-docker-nativo-diretamente-instalado-no-wsl2)
-    - [Vantagens](#docker-engine-vantagens)
-    - [Desvantagens](#docker-engine-desvantagens)
-- [Qual modo de usar Docker no Windows escolher?](#qual-modo-de-usar-docker-no-windows-escolher)
-- [Instalação do Docker](#instalação-do-docker)
-  - [1 - Instalar o Docker com Docker Desktop](#1---instalar-o-docker-com-docker-desktop)
-    - [Ativar o Docker na distribuição Linux](#ativar-o-docker-na-distribuição-linux)
-    - [Otimizar recursos do Docker Desktop](#otimizar-recursos-do-docker-desktop)
-    - [Aplicar autoMemoryReclaim no WSL 2](#aplicar-automemoryreclaim-no-wsl-2)
-  - [2 - Instalar o Docker com Docker Engine (Docker Nativo)](#instalar-o-docker-com-docker-engine-docker-nativo)
-    - [Erro ao iniciar o Docker no Ubuntu 22.04](#erro-ao-iniciar-o-docker-no-ubuntu-2204)
-    - [Iniciar o Docker automaticamente no WSL](#iniciar-o-docker-automaticamente-no-wsl)
-    - [Docker com Systemd](#docker-com-systemd)
+    - [Vantagens & Desvantagens](#vantagens--desvantagens)
+- [Docker no Windows](#docker-no-windows)
+- [Instalação do Docker Desktop (com WSL 2)](#instalação-do-docker-desktop-com-wsl-2)
+     - [Ativar o Docker na distribuição Linux](#ativar-o-docker-na-distribuição-linux)
+     - [Otimizar recursos do Docker Desktop](#otimizar-recursos-do-docker-desktop)
+     - [Aplicar autoMemoryReclaim no WSL 2](#aplicar-automemoryreclaim-no-wsl-2)
+</details>
+
+<details>
+  <summary>
+    <strong>Ambiente de Desenvolvimento
+
+</strong>
+  </summary>
+
+- [Limitar recursos usados pelo WSL 2](#limitar-recursos-usados-pelo-wsl-2)
+- [Systemd](#systemd)
+- [O que é WSLg](#o-que-é-wslg)
 </details>
 
 <details>
@@ -55,9 +54,9 @@
 - [O que é WSLg](#o-que-é-wslg)
 </details>
 
-## O que é
+## O que é WSL 2
 
-O WSL2 ou ***Windows Subsystem for Linux***, é uma camada de compatibilidade que permite executar distribuições Linux nativamente no Windows, utilizando uma arquitetura baseada em um kernel completo Linux completo integrado ao sistema. 
+O WSL 2 ou ***Windows Subsystem for Linux***, é uma camada de compatibilidade que permite executar distribuições Linux nativamente no Windows, utilizando uma arquitetura baseada em um kernel completo Linux completo integrado ao sistema. 
 
 Ele oferece melhor desempenho, compatibilidade total com chamadas do sistema Linux e suporte a ferramentas de desenvolvimento como Docker e Kubernetes, facilitando a criação e o uso de ambientes de desenvolvimento híbridos diretamente no Windows.
 
@@ -109,7 +108,7 @@ Crie um nome de usuário sem espaço e caracteres especiais) e uma **senha** (defi
 
 > Para abrir uma nova janela do Ubuntu, basta digitar `Ubuntu` no menu Iniciar e clicar no ícone do Ubuntu.
 
-Parabéns, seu WSL2 já está funcionando!
+Parabéns, seu WSL 2 já está funcionando!
 
 ### Terminal do Windows
 
@@ -138,11 +137,15 @@ Se o VSCode não estiver desta forma ao abrir projetos dentro do Linux, então o m
 
 # Docker 
 
+## O que é o Docker
+
 O Docker é uma plataforma open source de containers que permite empacotar aplicativos e suas dependências em um ambiente isolado e portátil.
 
-### Vantagens
+### Vantagens & Desvantagens
 
 O Docker é ideal para desenvolvimento, CI/CD e implantação em escala por ser mais eficiente que VMS, ambientes em nuvem e locais nativos.
+
+Vantagens:
 
 1. **Leveza**: Containers compartilham o kernel do sistema operacional, consumindo menos recursos comparado a uma VM que precisa de um sistema operacional completo.
 2. **Velocidade**: Inicializam em segundos, enquanto VMs e Clouds podem levar minutos.
@@ -150,38 +153,123 @@ O Docker é ideal para desenvolvimento, CI/CD e implantação em escala por ser mai
 4. **Gerenciamento Simples**: Menor overhead para criar, destruir ou replicar ambientes.
 5. **Melhor Utilização de Recursos**: Mais containers podem rodar no mesmo host, otimizando hardware se comparados com outras opções.
 
-### Desvantagens
+Desvantagens:
 
 1. Desempenho: Containers podem ter overhead em comparação a processos nativos.
 2. Compatibilidade: Nem todos os aplicativos ou serviços suportam execução em containers.
 3. Segurança: Não indicado para ambiente production. Menos isolamento que VMs, pois compartilham o kernel do host.
 4. Curva de aprendizado: Configurar e gerenciar containers pode ser complexo para iniciantes.
 
-## Uso do Docker no Windows
+## Docker no Windows
 
-Há ao menos 4 modos de usar o Docker no Windows, no entanto iremos optar pelo **Docker Desktop com WSL2**.
+Há ao menos 4 modos de usar o Docker no Windows, no entanto iremos optar pelo **Docker Desktop com WSL 2**.
 
 > - **Docker Toolbox** - o desempenho do Toolbox pode ser muito ruim. Recomendado para versões antigas do Windows (Xp, Vista, 7, 8 e 8.1);
 > - **Docker Desktop com Hyper-V** - Necessita da versão **PRO** do Windows 10/11, portanto é necessário compra-la.
 > - **Docker Engine** (Docker Nativo) - diretamente instalado no WSL 2 é viável, todavia a manutenção e segurança pode ser um desafiante para usuários iniciantes.
 
-Docker Desktop com WSL2 tem um grande desempenho e consome menos recursos quando comparado ao Docker Toolbox ou Docker Desktop com Hyper-V.
+Docker Desktop com WSL 2 tem um grande desempenho e consome menos recursos quando comparado ao Docker Toolbox ou Docker Desktop com Hyper-V.
+
+## Instalação do Docker Desktop (com WSL 2)
+
+Baixe neste link: [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/) e instale o Docker Desktop.
+
+> Se ao executar o instalador aparecer uma janela com erro `Erro - Este Aplicativo Não Pode ser executado em seu computador`, 
+> provavelmente você baixou uma versão incompativel com seu pc.
+> 
+> No Windows, verifique a arquitetura do sistema acessando **Configurações** ? **Sistema** ? **Sobre**: 
+> - 64-bit Operating System, x64-based processor ? Docker AMD64.
+> - 64-bit Operating System, ARM-based processor ? Docker ARM64.
+
+Importante - Durante a instalação mantenha a opção de suar o WSL 2 habilitada:
+
+![Use WSL 2 instead of Hyper-V (recommended)](assets/img/use-wsl2-instead-of-hyper-v.png)
+
+Logo após a instalação, será pedido para logar com sua conta do Docker. Faça o login (crie uma conta se não tiver) e siga as instruções.
+
+Ao final da instalação, o Docker Desktop estará instalado e rodando. Você pode ver o ícone do Docker perto do relógio do Windows. Ele ficará rodando em segundo plano. A interface do Docker Desktop deverá ficar assim:
+
+![Docker Desktop instalado](assets/img/installing-docker-desktop.png)
+
+Podemos ver agora que há 2 distribuições Linux rodando no WSL 2, uma é a distribuição padrão do Ubuntu (ou a que você instalou) e a outra é a distribuição do Docker Desktop. Rode o comando `wsl -l -v` para ver as distribuições Linux instaladas e seu status atual.
+
+![Distribuições Linux rodando no WSL 2](assets/img/wsl-docker-desktop-running.png)
+
+### Ativar o Docker na distribuição Linux
+
+Para o Docker funcionar na sua distribuição Linux, você precisa ativa-lo no painel do Docker Desktop. Abra a interface do Docker Desktop, clique no ícone de engrenagem no canto superior direito, vá em `Resources -> WSL Integration` e habilite a distribuição Linux que você deseja usar o Docker, e clique em `Apply & Restart`, conforme a imagem abaixo:
+
+![Ativar Docker na distribuição Linux](assets/img/docker-desktop-wsl-integration.png)
+
+### Otimizar recursos do Docker Desktop
+
+Existe um recurso no Docker Desktop chamado **Resource Save Mode** que otimiza o uso de recursos da máquina. Ele diminui o uso de memória RAM e CPU quando o Docker Desktop não está sendo usado.
+
+De tempos em tempos, o Docker Desktop vai analisar já há containers rodando e se não houver, ele vai diminuir o uso de recursos da máquina.
+
+Ative-o, clicando no ícone de engrenagem no canto superior direito, vá em `Resources -> Advanced` e habilite a opção `Resource Save Mode`, conforme a imagem abaixo:
+
+![Ativar Resource Save Mode no Docker Desktop](assets/img/resource-saver.png)
+
+Você pode escolher de quanto em quanto tempo o Docker Desktop vai analisar se há containers rodando e diminuir o uso de recursos da máquina. O padrão é 5 min.
+
+### Aplicar autoMemoryReclaim no WSL 2
+
+Com o passar do tempo, o WSL pode consumir memória RAM e não liberar, é feito cache de memória para melhorar o desempenho, mas podemos liberar esta memória depois de um tempo. Esta opção é chamada de `autoMemoryReclaim`, ela libera a memória RAM que não está sendo usada através de uma das 2 opções:
+
+* gradual: Libera a memória RAM de forma gradual de 5 em 5 minutos.
+* dropcache: Libera a memória RAM de forma imediata.
+
+Para ativar o `autoMemoryReclaim`, edite o arquivo `.wslconfig` presente na pasta de usuário do Windows (`%USERPROFILE%`):
+
+```conf
+[experimental]
+autoMemoryReclaim=gradual
+```
+
+> O `.wslconfig` não existirá caso ainda não tenha alterado a configuração padrão do WSL antes, se for o caso, crie um arquivo no Bloco de Notas e salva como `.wslconfig`.
+
+Esta opção só funcionará após reiniciar o WSL. Pare o WSL rodando o comando `wsl --shutdown`. Se o Docker Desktop estiver ativo, imediatamente notará que WSL caiu, apenas clique em "Reiniciar" para subir uma nova instância do WSL.
+
+# Ambiente de Desenvolvimento
+
+Execute todos os comandos a partir daqui no terminal do **Ubuntu**.
+
+> Para acessá-lo abrar um nova aba do Terminal do Windows (recomendado) ou digite `wsl` no PowerShell.
+
+## Git & GitHub
+
+**Git** é um sistema de controle de versão distribuído que permite rastrear alterações no código, colaborar com outros desenvolvedores e reverter mudanças, garantindo histórico e organização no desenvolvimento de software.
+
+Já o **GitHub** é uma plataforma baseada na nuvem que hospeda repositórios Git, adicionando ferramentas para colaboração, gerenciamento de projetos, revisão de código e integração com outros serviços.
+
+> Resumindo: Git é a ferramenta de controle de versões de código; GitHub é o serviço que facilita o uso do Git em equipe. ?
+
+A distribuição Ubuntu instalada com WSL 2 já vem com git. Você deve ser capaz de verificar a versão instalada executando:
+
+```bash
+git -v
+```
+
+### Comunicação entre Git e GitHub com SSH
+
+O Git e o GitHub podem se comunicar de forma segura usando chaves SSH. Isso elimina a necessidade de inserir credenciais repetidamente, automatizando e protegendo a autenticação.
+
+Como Funciona:
+
+- Chave SSH Privada e Pública:
+  - A chave privada permanece no computador e é usada para autenticar conexões.
+  - A chave pública é adicionada à conta do GitHub e valida a chave privada.
+- Configuração do GitHub:
+  - Com a chave pública cadastrada no GitHub, comandos Git, como `git push` e `git pull`, são autorizados automaticamente.
+
+### Criando e Configurando Chaves SSH
 
 
-
-
-
-
-
-
-
-- configurando ssh para clone.
-
-## Instalar o Ubuntu no WSL
+### Configurando ssh para clone.
 
 ...
 
-> *OBS.: Execute todos os comandos a seguir no terminal do Ubuntu / WSL 2.*
 
 ### Clonando os Repositórios
 
@@ -249,6 +337,7 @@ essencial para preparar as imagens antes de executar os containers.
 
 ### Instalando as dependências
  
+
 # Extras
 
 ## Limitar recursos usados pelo WSL 2
