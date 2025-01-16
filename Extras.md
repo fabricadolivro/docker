@@ -75,7 +75,7 @@ processors=4
 
 Estes são limites de exemplo e as configurações mais básicas a serem utilizadas, configure-os às suas disponibilidades.
 
-Para mais detalhes veja esta documentação da Microsoft: [https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig](https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig). Existem outras configurações que podem ser feitas, como configurações de rede, VPN, liberação de memória, etc.
+Para mais detalhes veja esta documentação da Microsoft: <a href="https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig" target="_blank">https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig</a>. Existem outras configurações que podem ser feitas, como configurações de rede, VPN, liberação de memória, etc.
 
 > Para aplicar estas configurações é necessário reiniciar as distribuições Linux. Execute o comando: `wsl --shutdown` (Este comando vai desligar todas as instâncias WSL 2 ativas, basta abrir o terminal novamente para usa-las já com as novas configurações).
 
@@ -196,7 +196,7 @@ Agora abra uma nova sessão para ver as alterações que serão efetivadas.
 
 # Oh My ZSH
 
-[**OH-MY-ZSH**](https://ohmyz.sh/) é um framework de código aberto para gerenciar a configuração do **ZSH** e é conduzido pela comunidade. Ele vem com toneladas de funções úteis, plugins, ajudantes, temas e algumas coisas que o tornarão melhor no terminal. Atualmente, há mais de **275** plugins e **150** temas suportados.
+<a href="https://ohmyz.sh/" target="_blank">**OH-MY-ZSH**</a> é um framework de código aberto para gerenciar a configuração do **ZSH** e é conduzido pela comunidade. Ele vem com toneladas de funções úteis, plugins, ajudantes, temas e algumas coisas que o tornarão melhor no terminal. Atualmente, há mais de **275** plugins e **150** temas suportados.
 
 ### Requisitos
 - O Zsh deve ser instalado (v4.3.9 ou mais recente serviria, mas preferimos 5.0.8 e mais recentes).
@@ -209,7 +209,7 @@ Agora abra uma nova sessão para ver as alterações que serão efetivadas.
 sudo apt instalar curl wget git
 ```
 
-Em seguida, [instale o **Oh My Zsh** via linha de comando com **curl** ou **wget**](https://ohmyz.sh/#install).
+Em seguida, <a href="https://ohmyz.sh/#install" target="_blank">instale o **Oh My Zsh** via linha de comando com **curl** ou **wget**</a>.
 
 ![Install Oh My Zsh](assets/img/install-Oh-My-Zsh.png)
 
@@ -348,9 +348,8 @@ v12.4.0
 
 Assim, ao abrir o terminal dentro do projeto e executar o comando `nvm use`, o NVM localizará automaticamente o arquivo `.nvmrc` e utilizará a versão indicada, garantindo consistência no ambiente.
 
-
 # Fontes
 
-- [Site Oh My Zsh](https://ohmyz.sh/)
-- [Como instalar o OH-MY-ZSH no Ubuntu 20.04](https://www.tecmint.com/install-oh-my-zsh-in-ubuntu/)
-- [Projeto NVM no GitHub](https://github.com/nvm-sh)
+- <a href="https://ohmyz.sh/" target="_blank">Site Oh My Zsh</a>
+- <a href="https://www.tecmint.com/install-oh-my-zsh-in-ubuntu/" target="_blank">Como instalar o OH-MY-ZSH no Ubuntu 20.04</a>
+- <a href="https://github.com/nvm-sh" target="_blank">Projeto NVM no GitHub</a>

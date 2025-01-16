@@ -56,7 +56,7 @@ Ele oferece melhor desempenho, compatibilidade total com chamadas do sistema Lin
 
 * **Windows 10 Home ou Professional**
     - Versão 2004 ou superior (Build 19041 ou superior).
-    - Versões mais antigas requerem a instalação manual do WSL 2. Ver tutorial [https://learn.microsoft.com/en-us/windows/wsl/install-manual](https://learn.microsoft.com/en-us/windows/wsl/install-manual).
+    - Versões mais antigas requerem a instalação manual do WSL 2. <a href="https://learn.microsoft.com/en-us/windows/wsl/install-manual/" target="_blank">Ver tutorial</a>.
 * **Windows 11 Home ou Professional**
     - Versão 22000 ou superior (qualquer Windows 11).
 * Uma máquina compatível com virtualização. Se sua máquina for mais antiga pode ser necessária habilita-la na BIOS).
@@ -81,14 +81,14 @@ wsl --set-default-version 2
 
 ### Terminal do Windows
 
-Recomendamos o uso do [Windows Terminal](https://docs.microsoft.com/pt-br/windows/terminal/get-started) como terminal padrão para desenvolvimento no Windows.
+Recomendamos o uso do <a href="https://docs.microsoft.com/pt-br/windows/terminal/get-started/" target="_blank">Windows Terminal</a> como terminal padrão para desenvolvimento no Windows.
 
 Por padrão, ele identificará e agregará o shell do Ubuntu e os principais shells instalados no Windows, como PowerShell, CMD e WSL em uma única janela, além de permitir personalização de cores, temas, atalhos e muito mais.
 A experiência de usar o Windows Terminal é muito melhor que o terminal padrão do Windows, use ele para desenvolver no Windows e também para acessar o WSL 2.
 
-Instale-o pelo **Windows Store**. Veja mais opções de configuração dele em [Mais sobre o Windows Terminal](https://docs.microsoft.com/pt-br/windows/terminal/get-started).
+Instale-o pelo **Windows Store**. Veja mais opções de configuração dele em <a href="https://docs.microsoft.com/pt-br/windows/terminal/get-started/" target="_blank">Mais sobre o Windows Terminal</a>.
 
-> Para uma experiência de shell mais moderna e eficiente, recomendamos o uso do **Oh My Zsh**. Consulte o arquivo [Tools.md](Tools.md#oh-my-zsh) para instruções de instalação.
+> Para uma experiência de shell mais moderna e eficiente, recomendamos o uso do **Oh My Zsh**. Consulte o arquivo [Extras.md](Extras.md#oh-my-zsh) para instruções de instalação.
 
 ### Instale o Ubuntu
 
@@ -128,13 +128,13 @@ Basta acessar o Windows Store e procurar pelo nome da distribuição Linux desejad
 
 Após a instalação, clique em "Abrir" para acessar o terminal e criar a conta de usuário UNIX padrão.
 
-![Crie conta de usuário UNIX padrão](create-default-unix-user-account.png)
+![Crie conta de usuário UNIX padrão](assets/img/create-default-unix-user-account.png)
 
 ### Integração com VSCode
 
 O Visual Studio Code tem uma extensão chamada **WSL** que permite acessar o WSL 2 diretamente do VSCode. Com esta extensão, você pode editar seus arquivos diretamente no WSL 2, rodar comandos, instalar extensões e muito mais.
 
-Veja mais sobre esta extensão em [WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl).
+Veja mais sobre esta extensão em <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" target="_blank">WSL</a>.
 
 Ao abrir um projeto que está dentro do Linux, é importante que o modo WSL do VSCode esteja ativado. No canto inferior esquerdo do VSCode, clique no botão `><` e selecione `Connect to WSL`. Isto irá conectar o VSCode ao WSL 2 e então poderá abrir o projeto que está dentro do Linux. Você verá que o botão `><` mudará para `WSL: Ubuntu`.
 
@@ -183,7 +183,7 @@ Docker Desktop com WSL 2 tem um grande desempenho e consome menos recursos quand
 
 ## Instalação do Docker Desktop (com WSL 2)
 
-Baixe neste link: [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/) e instale o Docker Desktop.
+Baixe neste link: <a href="https://www.docker.com/products/docker-desktop/" target="_blank">https://www.docker.com/products/docker-desktop/</a> e instale o Docker Desktop.
 
 > Se ao executar o instalador aparecer uma janela com erro `Erro - Este Aplicativo Não Pode ser executado em seu computador`, 
 > provavelmente você baixou uma versão incompativel com seu pc.
@@ -242,10 +242,11 @@ autoMemoryReclaim=gradual
 
 Esta opção só funcionará após reiniciar o WSL. Pare o WSL rodando o comando `wsl --shutdown`. Se o Docker Desktop estiver ativo, imediatamente notará que WSL caiu, apenas clique em "Reiniciar" para subir uma nova instância do WSL.
 
-<hr style="color:red">
+<span style="color:#ffffff;background-color:#3d444c;width:100%;display:block;padding:.8rem 1rem">
+A partir deste ponto, execute todos os comandos a partir daqui no terminal do <b>Ubuntu</b>.
+Para acessá-lo abrar um nova aba do Terminal do Windows (recomendado) ou digite `wsl` no PowerShell.
+</span>
 
-> Execute todos os comandos a partir daqui no terminal do **Ubuntu**.
->> Para acessá-lo abrar um nova aba do Terminal do Windows (recomendado) ou digite `wsl` no PowerShell.
 
 # Git & GitHub
 
@@ -263,8 +264,7 @@ git -v
 
 ### Conta no GitHub
 
-Se você ainda não possui uma conta pessoal no GitHub, interrompa a leitura deste guia e crie sua conta no [site oficial do GitHub](https://github.com/).
-
+Se você ainda não possui uma conta pessoal no GitHub, interrompa a leitura deste guia e crie sua conta no <a href="https://github.com/" target="_blank">site oficial do GitHub</a>.
 
 ### Configuração global
 
@@ -312,7 +312,7 @@ Quando for solicitado a inserir um arquivo para salvar a chave, pressione `Enter
 
 > Observe que, se você criou chaves SSH anteriormente, ssh-keygen pode pedir que você reescreva outra chave. Nesse caso, recomendamos criar uma chave SSH personalizada. Para fazer isso, digite o local do arquivo padrão e substitua id_ALGORITHM pelo nome da chave personalizada.
 
-Em seguida, digite (e confirme) uma frase secreta segura. Para saber mais, confira [Trabalhar com frase secreta da chave SSH](https://docs.github.com/pt/enterprise-server@3.10/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases).
+Em seguida, digite (e confirme) uma frase secreta segura. Para saber mais, confira <a href="https://docs.github.com/pt/enterprise-server@3.10/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases" target="_blank">Trabalhar com frase secreta da chave SSH</a>.
 
 ```bash
 > Enter passphrase (empty for no passphrase): [Type a passphrase]
@@ -334,12 +334,12 @@ Adicione sua chave SSH privada ao ssh-agent.
 ssh-add ~/.ssh/id_rsa
 ```
 
-### 3. [Adicione a chave SSH pública à sua conta do GitHub](https://docs.github.com/pt/enterprise-server@3.10/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+### 3. <a href="https://docs.github.com/pt/enterprise-server@3.10/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account" target="_blank">Adicione a chave SSH pública à sua conta do GitHub</a>.
 
 #### 3.1. Copie a chave pública SSH para a sua área de transferência.
 
 ```bash
-$ clip.exe < ~/.ssh/id_rsa.pub
+clip.exe < ~/.ssh/id_rsa.pub
 # Copia o conteúdo do arquivo id_rsa.pub para o clipboard
 ```
 
@@ -351,7 +351,7 @@ Nas versões mais recentes do Windows que usam o Windows Terminal ou em qualquer 
 - Na seção "Acesso" da barra lateral, clique em **? Chaves SSH e GPG** (`SSH and GPG keys`).
 - Clique em **Nova chave SSH** (`New SSH Key`) ou **Adicionar chave SSH**.
 - No campo "Título" (`Title`), adicione uma etiqueta descritiva para a nova chave. Por exemplo, se estiver usando um laptop pessoal, você poderá chamar essa chave de "Notebook do trabalho".
-- Selecione o tipo de chave (`Key type`) "**autenticação**". Para saber mais sobre a "assinatura" de commit, confira [Sobre a verificação de assinatura de commit](https://docs.github.com/pt/enterprise-server@3.10/authentication/managing-commit-signature-verification/about-commit-signature-verification).
+- Selecione o tipo de chave (`Key type`) "**autenticação**". Para saber mais sobre a "assinatura" de commit, confira <a href="https://docs.github.com/pt/enterprise-server@3.10/authentication/managing-commit-signature-verification/about-commit-signature-verification" target="_blank">Sobre a verificação de assinatura de commit</a>.
 - No campo "Chave" (`Key`), cole sua chave pública.
 - Clique em **Adicionar chave SSH** (`Add SSH Key`).
 
@@ -400,7 +400,7 @@ git clone git@github.com:fabricadolivro/editor-backend-api.git
 git clone git@github.com:fabricadolivro/editor-frontend.git
 ```
 
-> Para clonar um repositório com SSH, é necessário configurar uma chave e publica-la em seu perfil do github ([Saiba mais aqui](https://docs.github.com/pt/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)).
+> Para clonar um repositório com SSH, é necessário configurar uma chave e publicá-la no seu perfil do github. <a href="https://docs.github.com/pt/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent" target="_blank">Saiba mais aqui</a>.
 
 ### Variáveis de Ambiente (.env)
 
