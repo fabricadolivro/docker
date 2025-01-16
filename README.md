@@ -13,8 +13,8 @@
 - [Requisitos mínimos](#requisitos-mínimos)
 - [Instalação do WSL 2 (Windows 10/11)](#instalação-do-wsl-2-windows-1011)
     - [Windows Update](#windows-update)
-    - [Instale o Ubuntu](#instale-o-ubuntu)
     - [Terminal do Windows](#terminal-do-windows)
+    - [Instale o Ubuntu](#instale-o-ubuntu)
     - [Integração com VSCode (opcional)](#integração-com-vscode-opcional)
 </details>
 
@@ -37,16 +37,6 @@
     <strong>Ambiente de Desenvolvimento
 
 </strong>
-  </summary>
-
-- [Limitar recursos usados pelo WSL 2](#limitar-recursos-usados-pelo-wsl-2)
-- [Systemd](#systemd)
-- [O que é WSLg](#o-que-é-wslg)
-</details>
-
-<details>
-  <summary>
-    <strong>Extras</strong>
   </summary>
 
 - [Limitar recursos usados pelo WSL 2](#limitar-recursos-usados-pelo-wsl-2)
@@ -89,27 +79,6 @@ A versão 2 normalmente é a default, mas a versão 1 do WSL pode estar como defaul
 wsl --set-default-version 2
 ```
 
-### Instale o Ubuntu
-
-Execute o comando a seguir para instalar o `Ubuntu` (sem versão) como subsistema:
-
-```bash
-wsl --install
-```
-
-> A Ubuntu (sem versão) já vem com várias ferramentas úteis para desenvolvimento instaladas por padrão.
-Se você quiser instalar uma versão diferente do Ubuntu, execute o comando `wsl -l -o` para listar as distribuições disponíveis.
-
-> Também é possível instalar distribuições Linux pelo **Windows Store**. Basta acessar o Windows Store e procurar pelo nome da distribuição Linux desejada e clicar em instalar.
-
-Com êxito na operação, há uma boa chance de precisar reiniciar o seu sistema para que as alterações tenham efeito.
-Após, você deverá criar um **nome de usuário** que poderá ser o mesmo da sua máquina.
-Crie um nome de usuário sem espaço e caracteres especiais) e uma **senha** (defina uma senha forte). Esta senha será usada para instalar pacotes e realizar operações de superusuário.
-
-> Para abrir uma nova janela do Ubuntu, basta digitar `Ubuntu` no menu Iniciar e clicar no ícone do Ubuntu.
-
-Parabéns, seu WSL 2 já está funcionando!
-
 ### Terminal do Windows
 
 Recomendamos o uso do [Windows Terminal](https://docs.microsoft.com/pt-br/windows/terminal/get-started) como terminal padrão para desenvolvimento no Windows.
@@ -118,6 +87,48 @@ Por padrão, ele identificará e agregará o shell do Ubuntu e os principais shells
 A experiência de usar o Windows Terminal é muito melhor que o terminal padrão do Windows, use ele para desenvolver no Windows e também para acessar o WSL 2.
 
 Instale-o pelo **Windows Store**. Veja mais opções de configuração dele em [Mais sobre o Windows Terminal](https://docs.microsoft.com/pt-br/windows/terminal/get-started).
+
+> Para uma experiência de shell mais moderna e eficiente, recomendamos o uso do **Oh My Zsh**. Consulte o arquivo [Tools.md](Tools.md#oh-my-zsh) para instruções de instalação.
+
+### Instale o Ubuntu
+
+Existem duas maneiras de instalar: pelos **comandos do WSL** ou pela **Windows Store**. Independente do meio, recomendamos o Ubuntu (sem versão) por ser uma distribuição popular e que já vem com várias ferramentas úteis para desenvolvimento instaladas por padrão.
+
+- **Opção 1 - Instalação via comandos**
+
+Execute o comando a seguir para instalar o `Ubuntu` (sem versão) como o Linux padrão:
+
+```bash
+wsl --install
+```
+
+Se você quiser instalar uma versão diferente do Ubuntu, execute o comando `wsl -l -o` para listar as distribuições disponíveis. Instale a versão escolhida com o comando `wsl --install -d nome-da-distribuicao`.
+
+> Para instalar a distribuição numa pasta ou dispositivo específico, baixe a
+> distribuição da Microsoft Store, importe a distribuição com o commando 
+> `wsl --import <nome-da-distro> <caminho-da-pasta-de-instalacao> <caminho-do-arquivo-rootfs>` (), 
+> defina a distribuição padrão `wsl --set-default <nome-da-distro>` e abra com `wsl -d <nome-da-distro>`.
+
+Você deverá criar um **nome de usuário** que poderá ser o mesmo da sua máquina.
+Crie um nome de usuário sem espaço e caracteres especiais) e uma **senha** (defina uma senha forte). Esta senha será usada para instalar pacotes e realizar operações de superusuário.
+
+Com êxito na operação, há uma boa chance de precisar reiniciar o seu sistema para que as alterações tenham efeito.
+
+> Para abrir uma nova janela do Ubuntu, basta digitar `Ubuntu` no menu Iniciar e clicar no ícone do Ubuntu.
+
+Parabéns, seu WSL 2 já está funcionando!
+
+![WSL2 working!](assets/img/wsl2-working.png)
+
+- **Opção 2 - Instalação via Windows Store**
+
+Basta acessar o Windows Store e procurar pelo nome da distribuição Linux desejada e clicar em instalar.
+
+![Linux distros](assets/img/linux-distros.png)
+
+Após a instalação, clique em "Abrir" para acessar o terminal e criar a conta de usuário UNIX padrão.
+
+![Crie conta de usuário UNIX padrão](create-default-unix-user-account.png)
 
 ### Integração com VSCode
 
@@ -177,9 +188,9 @@ Baixe neste link: [https://www.docker.com/products/docker-desktop/](https://www.
 > Se ao executar o instalador aparecer uma janela com erro `Erro - Este Aplicativo Não Pode ser executado em seu computador`, 
 > provavelmente você baixou uma versão incompativel com seu pc.
 > 
-> No Windows, verifique a arquitetura do sistema acessando **Configurações** ? **Sistema** ? **Sobre**: 
-> - 64-bit Operating System, x64-based processor ? Docker AMD64.
-> - 64-bit Operating System, ARM-based processor ? Docker ARM64.
+> No Windows, verifique a arquitetura do sistema acessando **Configurações** &rarr; **Sistema** &rarr; **Sobre**: 
+> - 64-bit Operating System, x64-based processor &rarr; Docker AMD64.
+> - 64-bit Operating System, ARM-based processor &rarr; Docker ARM64.
 
 Importante - Durante a instalação mantenha a opção de suar o WSL 2 habilitada:
 
@@ -197,7 +208,7 @@ Podemos ver agora que há 2 distribuições Linux rodando no WSL 2, uma é a distrib
 
 ### Ativar o Docker na distribuição Linux
 
-Para o Docker funcionar na sua distribuição Linux, você precisa ativa-lo no painel do Docker Desktop. Abra a interface do Docker Desktop, clique no ícone de engrenagem no canto superior direito, vá em `Resources -> WSL Integration` e habilite a distribuição Linux que você deseja usar o Docker, e clique em `Apply & Restart`, conforme a imagem abaixo:
+Para o Docker funcionar na sua distribuição Linux, você precisa ativa-lo no painel do Docker Desktop. Abra a interface do Docker Desktop, clique no ícone de engrenagem no canto superior direito, vá em `Resources` &rarr; `WSL Integration` e habilite a distribuição Linux que você deseja usar o Docker, e clique em `Apply & Restart`, conforme a imagem abaixo:
 
 ![Ativar Docker na distribuição Linux](assets/img/docker-desktop-wsl-integration.png)
 
@@ -205,9 +216,9 @@ Para o Docker funcionar na sua distribuição Linux, você precisa ativa-lo no pain
 
 Existe um recurso no Docker Desktop chamado **Resource Save Mode** que otimiza o uso de recursos da máquina. Ele diminui o uso de memória RAM e CPU quando o Docker Desktop não está sendo usado.
 
-De tempos em tempos, o Docker Desktop vai analisar já há containers rodando e se não houver, ele vai diminuir o uso de recursos da máquina.
+De tempos em tempos, o Docker Desktop vai analisar se há containers rodando e se não houver, ele vai diminuir o uso de recursos da máquina.
 
-Ative-o, clicando no ícone de engrenagem no canto superior direito, vá em `Resources -> Advanced` e habilite a opção `Resource Save Mode`, conforme a imagem abaixo:
+Ative-o, clicando no ícone de engrenagem no canto superior direito, vá em `Resources` &rarr; `Advanced` e habilite a opção `Resource Save Mode`, conforme a imagem abaixo:
 
 ![Ativar Resource Save Mode no Docker Desktop](assets/img/resource-saver.png)
 
@@ -227,23 +238,22 @@ Para ativar o `autoMemoryReclaim`, edite o arquivo `.wslconfig` presente na past
 autoMemoryReclaim=gradual
 ```
 
-> O `.wslconfig` não existirá caso ainda não tenha alterado a configuração padrão do WSL antes, se for o caso, crie um arquivo no Bloco de Notas e salva como `.wslconfig`.
+> O `.wslconfig` não existirá caso ainda não tenha alterado a configuração padrão do WSL antes, se for o caso, crie um arquivo no Bloco de Notas e salve como `.wslconfig`.
 
 Esta opção só funcionará após reiniciar o WSL. Pare o WSL rodando o comando `wsl --shutdown`. Se o Docker Desktop estiver ativo, imediatamente notará que WSL caiu, apenas clique em "Reiniciar" para subir uma nova instância do WSL.
 
-# Ambiente de Desenvolvimento
+<hr style="color:red">
 
-Execute todos os comandos a partir daqui no terminal do **Ubuntu**.
+> Execute todos os comandos a partir daqui no terminal do **Ubuntu**.
+>> Para acessá-lo abrar um nova aba do Terminal do Windows (recomendado) ou digite `wsl` no PowerShell.
 
-> Para acessá-lo abrar um nova aba do Terminal do Windows (recomendado) ou digite `wsl` no PowerShell.
-
-## Git & GitHub
+# Git & GitHub
 
 **Git** é um sistema de controle de versão distribuído que permite rastrear alterações no código, colaborar com outros desenvolvedores e reverter mudanças, garantindo histórico e organização no desenvolvimento de software.
 
 Já o **GitHub** é uma plataforma baseada na nuvem que hospeda repositórios Git, adicionando ferramentas para colaboração, gerenciamento de projetos, revisão de código e integração com outros serviços.
 
-> Resumindo: Git é a ferramenta de controle de versões de código; GitHub é o serviço que facilita o uso do Git em equipe. ?
+> Resumindo: Git é a ferramenta de controle de versões de código; GitHub é o serviço que facilita o uso do Git em equipe.
 
 A distribuição Ubuntu instalada com WSL 2 já vem com git. Você deve ser capaz de verificar a versão instalada executando:
 
@@ -251,9 +261,31 @@ A distribuição Ubuntu instalada com WSL 2 já vem com git. Você deve ser capaz de
 git -v
 ```
 
+### Conta no GitHub
+
+Se você ainda não possui uma conta pessoal no GitHub, interrompa a leitura deste guia e crie sua conta no [site oficial do GitHub](https://github.com/).
+
+
+### Configuração global
+
+Para configurar um usuário global no Git, execute:
+
+```bash
+git config --global user.name "Seu Nome ou username"
+git config --global user.email "seuemaildogithub@exemplo.com"
+```
+
+> Recomendo utilizar o seu `username` e `email` do GitHub como seu `name` e `email` globais.
+
+Para verificar se os valores foram definidos corretamente:
+
+```bash
+git config --global --list
+```
+
 ### Comunicação entre Git e GitHub com SSH
 
-O Git e o GitHub podem se comunicar de forma segura usando chaves SSH. Isso elimina a necessidade de inserir credenciais repetidamente, automatizando e protegendo a autenticação.
+O Git e o GitHub podem se comunicar de forma segura usando chaves SSH. Isso elimina a necessidade de inserir credenciais repetidamente (via HTTPS), automatizando e protegendo a autenticação.
 
 Como Funciona:
 
@@ -263,13 +295,88 @@ Como Funciona:
 - Configuração do GitHub:
   - Com a chave pública cadastrada no GitHub, comandos Git, como `git push` e `git pull`, são autorizados automaticamente.
 
-### Criando e Configurando Chaves SSH
+## Criando e Configurando Chaves SSH no GitHub (Linux)
 
+### 1. Gere uma chave SSH local:
 
-### Configurando ssh para clone.
+```bash
+cd ~ 
+ssh-keygen -t rsa -b 4096 -C "seuemaildogithub@example.com"
+```
 
-...
+Quando for solicitado a inserir um arquivo para salvar a chave, pressione `Enter` para aceitar o local padrão do arquivo (`~/.ssh`). 
 
+```bash
+> Enter a file in which to save the key (/home/YOU/.ssh/id_ALGORITHM):[Press enter]
+```
+
+> Observe que, se você criou chaves SSH anteriormente, ssh-keygen pode pedir que você reescreva outra chave. Nesse caso, recomendamos criar uma chave SSH personalizada. Para fazer isso, digite o local do arquivo padrão e substitua id_ALGORITHM pelo nome da chave personalizada.
+
+Em seguida, digite (e confirme) uma frase secreta segura. Para saber mais, confira [Trabalhar com frase secreta da chave SSH](https://docs.github.com/pt/enterprise-server@3.10/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases).
+
+```bash
+> Enter passphrase (empty for no passphrase): [Type a passphrase]
+> Enter same passphrase again: [Type passphrase again]
+```
+
+### 2. Adicione a chave SSH ao ssh-agent
+
+Inicie o ssh-agent em segundo plano.
+
+```bash
+eval "$(ssh-agent -s)"
+# Agent pid 2245
+```
+
+Adicione sua chave SSH privada ao ssh-agent.
+
+```bash
+ssh-add ~/.ssh/id_rsa
+```
+
+### 3. [Adicione a chave SSH pública à sua conta do GitHub](https://docs.github.com/pt/enterprise-server@3.10/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+
+#### 3.1. Copie a chave pública SSH para a sua área de transferência.
+
+```bash
+$ clip.exe < ~/.ssh/id_rsa.pub
+# Copia o conteúdo do arquivo id_rsa.pub para o clipboard
+```
+
+Nas versões mais recentes do Windows que usam o Windows Terminal ou em qualquer outro lugar que use a linha de comando do PowerShell, você poderá receber um ParseError indicando que The '&lt;' operator is reserved for future use.. Nesse caso, o seguinte comando alternativo clip deve ser usado: `cat ~/.ssh/id_ed25519.pub | clip`
+
+#### 3.2. Adicione a chave copiada o GitHub.
+
+- No canto superior direito de qualquer página do GitHub, clique sua foto de perfil e, em seguida, clique em **?? Configurações** (`Settings`).
+- Na seção "Acesso" da barra lateral, clique em **? Chaves SSH e GPG** (`SSH and GPG keys`).
+- Clique em **Nova chave SSH** (`New SSH Key`) ou **Adicionar chave SSH**.
+- No campo "Título" (`Title`), adicione uma etiqueta descritiva para a nova chave. Por exemplo, se estiver usando um laptop pessoal, você poderá chamar essa chave de "Notebook do trabalho".
+- Selecione o tipo de chave (`Key type`) "**autenticação**". Para saber mais sobre a "assinatura" de commit, confira [Sobre a verificação de assinatura de commit](https://docs.github.com/pt/enterprise-server@3.10/authentication/managing-commit-signature-verification/about-commit-signature-verification).
+- No campo "Chave" (`Key`), cole sua chave pública.
+- Clique em **Adicionar chave SSH** (`Add SSH Key`).
+
+> Se solicitado, faça a autenticação de dois fatores (2FA) para finalizar a adição.
+
+#### 3.3. Teste a chave SSH configurada no GitHub
+
+Tentar autenticar sua chave SSH com o servidor do GitHub executando o comando:
+
+```bash
+ssh -T git@github.com
+```
+
+> Se for a primeira vez que você está se conectando a esse servidor, a chave pública dele não está armazenada no arquivo `~/.ssh/known_hosts` do seu sistema.
+> Digite `yes` para continuar. Isso adicionará a chave do GitHub as redes conhecidas e não será perguntado novamente. 
+
+Se a configuração estiver correta, você verá uma mensagem como:
+
+```bash
+Hi <username>! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+# Ambiente de Desenvolvimento
+
+## Repositórios e Hosts
 
 ### Clonando os Repositórios
 
@@ -295,7 +402,7 @@ git clone git@github.com:fabricadolivro/editor-frontend.git
 
 > Para clonar um repositório com SSH, é necessário configurar uma chave e publica-la em seu perfil do github ([Saiba mais aqui](https://docs.github.com/pt/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)).
 
-### ?? Variáveis de Ambiente (.env)
+### Variáveis de Ambiente (.env)
 
 - Acesse a pasta do projeto "docker" e copie o arquivo `.env.example` para `.env`:
 ```shell
@@ -323,10 +430,12 @@ Edite o arquivo ```hosts``` presente na pasta de configurações de rede no Window
 ### Construindo as imagens Docker
 
 Estando dentro do projeto **docker** (```~/fabricadolivro/docker```), execute:
+
 ```shell
 #docker compose -f docker-compose.yml build
 make build
 ```
+
 > Na primeira vez, esse processo pode levar alguns minutos a depender da velocidade de conexão.
 
 Ao termino do processo, o docker terá baixado as imagens Docker genéricas
@@ -336,87 +445,17 @@ configurar dependências, volumes e variáveis de ambiente. Este comando é
 essencial para preparar as imagens antes de executar os containers.
 
 ### Instalando as dependências
- 
+
+...
+
+> <span style="color:#ffff00">Pronto!</span> Seu ambiente de desenvolvimento está pronto!
 
 # Extras
 
-## Limitar recursos usados pelo WSL 2
+Para recursos avançados verifique o arquivo [Extras.md](Extras.md): 
 
-Podemos dizer que o WSL 2 tem acesso quase que total ao recursos de sua máquina. Ele tem acesso por padrão:
-
-* A 1TB de disco rígido. É criado um disco virtual de 1TB para armazenar os arquivos do Linux (este limite pode ser expandido, ver a área de dicas e truques).
-* A usar completamente os recursos de processamento.
-* A usar 50% da memória RAM disponível.
-* A usar 25% da memória disponível para SWAP (memória virtual).
-
-Se você quiser personalizar estes limites, crie um arquivo chamado `.wslconfig` na raiz da sua pasta de usuário `(C:\Users\<seu_usuario>)` e defina estas configurações:
-
-```conf
-[wsl2]
-memory=8GB
-processors=4
-```
-
-Estes são limites de exemplo e as configurações mais básicas a serem utilizadas, configure-os às suas disponibilidades.
-
-Para mais detalhes veja esta documentação da Microsoft: [https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig](https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig). Existem outras configurações que podem ser feitas, como configurações de rede, VPN, liberação de memória, etc.
-
-> Para aplicar estas configurações é necessário reiniciar as distribuições Linux. Execute o comando: `wsl --shutdown` (Este comando vai desligar todas as instâncias WSL 2 ativas, basta abrir o terminal novamente para usa-las já com as novas configurações).
-
-Este arquivo `.wslconfig` é um arquivo de configuração global, ou seja, ele afetará todas as distribuições Linux que você tiver instalado no WSL 2, porque você pode ter mais de uma distribuição Linux instalada no WSL 2, como um Ubuntu, um Debian, um Fedora, etc.
-
-## Systemd
-
-O WSL é compatível com o `systemd`. O `systemd` é um sistema de inicialização e gerenciamento de serviços que é amplamente utilizado em distribuições Linux modernas. Ela permitirá que você use ferramentas mais complexas no Linux como snapd, LXD, etc.
-
-Não é obrigatório ativa-lo e a qualquer momento ele pode ser desativado e reativado. Mas, recomendamos que o mantenha ativado, porque ele melhorará a compatibilidade com as distribuições Linux, permitindo que você use mais ferramentas e serviços, como Kubernetes, etc (Ele não é necessário para rodar o Docker).
-
-Para ativa-lo, edite o arquivo `/etc/wsl.conf`:
-
-Rode o comando para editar:
-
-```conf
-sudo vim /etc/wsl.conf
-```
-
-Aperte a letra `i` (para entrar no modo de inserção de conteúdo) e cole o conteúdo:
-
-```conf
-[boot]
-systemd = true
-```
-
-Quando terminar a edição, pressione `Esc`, em seguida tecle `:` para entrar com o comando `wq` (salvar e sair) e pressione `enter`.
-
-Toda vez que esta mudança for realizada é necessário reiniciar o WSL com o comando `wsl --shutdown` no DOS ou PowerShell.
-
-## O que é WSLg
-
-O WSLg é uma extensão do WSL 2 que permite rodar aplicações gráficas do Linux no Windows. Ele é uma extensão do WSL 2 e não é necessário instalar nada adicional, basta ter o WSL 2 instalado e atualizado.
-
-Com ele é possível rodar aplicações como Chrome, Firefox, Gedit, IDEs (VSCode, JetBrains) e até aplicações gráficas feitas em Java, Python e etc.
-
-### Arquitetura do WSLg
-
-O WSLg é composto pelos componentes: Wayland, Weston, PulseAudio e CBL-Mariner.
-
-Basicamente teremos o Wayland como servidor gráfico, o Weston como compositor, o PulseAudio para áudio e o CBL-Mariner como distribuição Linux para rodar as aplicações gráficas.
-
-![Arquitetura do WSLg](assets/img/WSLg_ArchitectureOverview.png)
-
-### Como ativar o WSLg
-
-Para ativar o WSLg, basta ter o WSL 2 instalado e atualizado. Não é necessário instalar nada adicional.
-
-Quando instalar algum aplicativo que dependente de interface gráfica, o WSLg será ativado automaticamente. Vamos a um exemplo:
-
-```bash
-sudo apt-get update
-
-sudo apt-get install gedit
-```
-
-Abra o Gedit no terminal do WSL 2 digitando `gedit` e ele será aberto no Windows.
-
-Portanto basta instalar o aplicativo e lança-lo no terminal do WSL 2 para que ele seja aberto no Windows.
-
+- **WSL2** - como limita recursos
+- **Systemd** - para recursos avançados
+- **WSLg** - abra apps do Ubuntu no Windows
+- **Zsh** e **Oh My Zsh** - shell moderno
+- **NVM** - gerenciamento de versões Node.js

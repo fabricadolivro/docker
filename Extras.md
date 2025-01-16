@@ -1,0 +1,356 @@
+<p align="center">
+  <a href="https://fabricadolivro.com.br/" target="blank"><img src="assets/fabricadolivro-logo.svg"/></a>
+</p>
+
+# Ferramentas Extras
+
+> Todo conteúdo desta seção é opcional e não mandatório para o desenvolvimento.
+
+<details open>
+  <summary>
+    <strong>WSL</strong>
+  </summary>
+
+- [Limitar recursos usados pelo WSL 2](#limitar-recursos-usados-pelo-wsl-2)
+- [Systemd](#systemd)
+- [O que é WSLg](#o-que-é-wslg)
+     - [Arquitetura do WSLg](#arquitetura-do-wslg)
+     - [Como ativar o WSLg](#como-ativar-o-wslg)
+</details>
+
+<details>
+  <summary>
+    <strong>ZSH</strong>
+  </summary>
+
+- [Vantagens do ZSH sobre o Bash](#Vantagens do ZSH sobre o Bash)
+- [Instale o ZSH](#instale-o-zsh)
+- [Configurando o ZSH no Ubuntu Linux](#configurando-o-zsh-no-ubuntu-linux)
+- [Reverter para o antigo Bash Shell](#reverter-para-o-antigo-bash-shell)
+</details>
+
+<details>
+  <summary>
+    <strong>Oh My Zsh</strong>
+  </summary>
+
+- [Requisitos](#requisitos)
+- [Instalação OH-MY-ZSH](#instalação-oh-my-zsh)
+- [Temas OH-MY-ZSH](#temas-oh-my-zsh)
+- [Plugins OH-MY-ZSH](#plugins-oh-my-zsh)
+- [Atualização automática](#atualização-automática)
+- [Removendo do Ubuntu Linux](#removendo-do-ubuntu-linux)
+</details>
+
+<details>
+  <summary>
+    <strong>NVM</strong>
+  </summary>
+
+- [Conheça o NVM!](#conheca-o-nvm)
+- [Instalação do NVM](#instalacao-do-nvm)
+- [Comandos Básicos](#comandos-basicos)
+- [Migração de pacotes globais](#migração-de-pacotes-globais)
+- [Definição de versão por projeto](#definição-de-versão-por-projeto)
+</details>
+
+# WSL
+
+## Limitar recursos usados pelo WSL 2
+
+Podemos dizer que o WSL 2 tem acesso quase que total ao recursos de sua máquina. Ele tem acesso por padrão:
+
+* A 1TB de disco rígido. É criado um disco virtual de 1TB para armazenar os arquivos do Linux (este limite pode ser expandido, ver a área de dicas e truques).
+* A usar completamente os recursos de processamento.
+* A usar 50% da memória RAM disponível.
+* A usar 25% da memória disponível para SWAP (memória virtual).
+
+Se você quiser personalizar estes limites, crie um arquivo chamado `.wslconfig` na raiz da sua pasta de usuário `(C:\Users\<seu_usuario>)` e defina estas configurações:
+
+```conf
+[wsl2]
+memory=8GB
+processors=4
+```
+
+Estes são limites de exemplo e as configurações mais básicas a serem utilizadas, configure-os às suas disponibilidades.
+
+Para mais detalhes veja esta documentação da Microsoft: [https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig](https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig). Existem outras configurações que podem ser feitas, como configurações de rede, VPN, liberação de memória, etc.
+
+> Para aplicar estas configurações é necessário reiniciar as distribuições Linux. Execute o comando: `wsl --shutdown` (Este comando vai desligar todas as instâncias WSL 2 ativas, basta abrir o terminal novamente para usa-las já com as novas configurações).
+
+Este arquivo `.wslconfig` é um arquivo de configuração global, ou seja, ele afetará todas as distribuições Linux que você tiver instalado no WSL 2, porque você pode ter mais de uma distribuição Linux instalada no WSL 2, como um Ubuntu, um Debian, um Fedora, etc.
+
+## Systemd
+
+O WSL é compatível com o `systemd`. O `systemd` é um sistema de inicialização e gerenciamento de serviços que é amplamente utilizado em distribuições Linux modernas. Ela permitirá que você use ferramentas mais complexas no Linux como snapd, LXD, etc.
+
+Não é obrigatório ativa-lo e a qualquer momento ele pode ser desativado e reativado. Mas, recomendamos que o mantenha ativado, porque ele melhorará a compatibilidade com as distribuições Linux, permitindo que você use mais ferramentas e serviços, como Kubernetes, etc (Ele não é necessário para rodar o Docker).
+
+Para ativa-lo, edite o arquivo `/etc/wsl.conf`:
+
+Rode o comando para editar:
+
+```conf
+sudo vim /etc/wsl.conf
+```
+
+Aperte a letra `i` ou `insert` (para entrar no modo de inserção de conteúdo) e cole o conteúdo:
+
+```conf
+[boot]
+systemd = true
+```
+
+Quando terminar a edição, pressione `Esc`, em seguida tecle `:` para entrar com o comando `wq` (salvar e sair) e pressione `enter`.
+
+Toda vez que esta mudança for realizada é necessário reiniciar o WSL com o comando `wsl --shutdown` no DOS ou PowerShell.
+
+## O que é WSLg
+
+O WSLg é uma extensão do WSL 2 que permite rodar aplicações gráficas do Linux no Windows. Ele é uma extensão do WSL 2 e não é necessário instalar nada adicional, basta ter o WSL 2 instalado e atualizado.
+
+Com ele é possível rodar aplicações como Chrome, Firefox, Gedit, IDEs (VSCode, JetBrains) e até aplicações gráficas feitas em Java, Python e etc.
+
+### Arquitetura do WSLg
+
+O WSLg é composto pelos componentes: Wayland, Weston, PulseAudio e CBL-Mariner.
+
+Basicamente teremos o Wayland como servidor gráfico, o Weston como compositor, o PulseAudio para áudio e o CBL-Mariner como distribuição Linux para rodar as aplicações gráficas.
+
+![Arquitetura do WSLg](assets/img/WSLg_ArchitectureOverview.png)
+
+### Como ativar o WSLg
+
+Para ativar o WSLg, basta ter o WSL 2 instalado e atualizado. Não é necessário instalar nada adicional.
+
+Quando instalar algum aplicativo que dependente de interface gráfica, o WSLg será ativado automaticamente. Vamos a um exemplo:
+
+```bash
+sudo apt-get update
+
+sudo apt-get install gedit
+```
+
+Abra o Gedit no terminal do WSL 2 digitando `gedit` e ele será aberto no Windows.
+
+Portanto basta instalar o aplicativo e lança-lo no terminal do WSL 2 para que ele seja aberto no Windows.
+
+# ZSH
+
+O ZSH (Z Shell) é um shell poderoso e personalizável para sistemas UNIX, como Linux e macOS. Ele é uma alternativa ao Bash (Bourne Again Shell), oferecendo recursos avançados que tornam o uso do terminal mais eficiente e produtivo.
+
+## Vantagens do ZSH sobre o Bash:
+
+- **Autocompletar Inteligente**: Sugestões automáticas para comandos e opções.
+- **Temas e Plugins**: Personalize a aparência do terminal e adicione funcionalidades extras facilmente.
+- **Correção de Comandos**: Identifica e corrige erros de digitação em comandos.
+- **Histórico Aprimorado**: Pesquisa rápida e eficiente no histórico de comandos.
+- **Glob Patterns Avançados**: Melhor manipulação de arquivos e diretórios.
+
+Combinado com ferramentas como **Oh My Zsh**, o ZSH proporciona uma experiência mais moderna e produtiva no terminal.
+
+## Instale o ZSH
+
+Use o **gerenciador de pacotes apt** para instalar o **ZSH** no **Ubuntu**.
+
+```bash
+sudo apt install zsh
+```
+
+> O apt instalará a versão mais recente do **ZSH**. Para ver digite: `zsh --version`
+
+Instalar o **ZSH** não irá modificá-lo e defini-lo como o shell padrão. Temos que modificar as configurações para tornar o ZSH nosso shell padrão.
+Use o comando `chsh` com flag `-s` para alternar o shell padrão para o usuário.
+
+```bash
+echo $SHELL
+chsh -s $(which zsh) 
+# ou
+chsh -s /usr/bin/zsh
+```
+ 
+![Set Zsh Shell in Ubuntu](assets/img/set_zsh_shell_in_ubuntu.png)
+
+Agora, saia do terminal e faça login novamente.
+
+### Configurando o ZSH no Ubuntu Linux
+
+Comparado a outros shells como BASH , o ZSH requer alguma configuração inicial para ser mantido. Quando você inicia o ZSH **pela primeira vez**, ele lhe dará algumas opções para configurar.
+
+Selecionando a opção “**1**” na primeira página, nos levará ao menu principal para configurar manualmente cada opção.
+Podemos escolher a opção "**2**" que preencherá o arquivo `.zshrc` com a configuração padrão. Podemos alterar os parâmetros diretamente no arquivo `.zshrc`.
+
+![Zsh Default Parameters](Zsh-Default-Parameters.png)
+
+### Reverter para o antigo Bash Shell
+
+Execute:
+
+```bash
+sudo apt --purge remove zsh 
+chsh -s $(which "SHELL NAME")
+```
+
+Agora abra uma nova sessão para ver as alterações que serão efetivadas.
+
+# Oh My ZSH
+
+[**OH-MY-ZSH**](https://ohmyz.sh/) é um framework de código aberto para gerenciar a configuração do **ZSH** e é conduzido pela comunidade. Ele vem com toneladas de funções úteis, plugins, ajudantes, temas e algumas coisas que o tornarão melhor no terminal. Atualmente, há mais de **275** plugins e **150** temas suportados.
+
+### Requisitos
+- O Zsh deve ser instalado (v4.3.9 ou mais recente serviria, mas preferimos 5.0.8 e mais recentes).
+- Curl ou Wget devem ser instalados.
+- O Git deve ser instalado (recomenda-se v2.4.11 ou superior).
+
+## Instalação OH-MY-ZSH
+
+```bash
+sudo apt instalar curl wget git
+```
+
+Em seguida, [instale o **Oh My Zsh** via linha de comando com **curl** ou **wget**](https://ohmyz.sh/#install).
+
+![Install Oh My Zsh](assets/img/install-Oh-My-Zsh.png)
+
+Depois que você instalar o **OH-MY-ZSH**, ele fará um backup do seu arquivo `.zhrc` existente.
+Então, um novo `.zshrc` será criado com as configurações. Então, sempre que você decidir remover o **OH-MY-ZSH** usando o desinstalador, o arquivo `.zshrc` será revertido automaticamente.
+
+> Todas as configurações são colocadas no arquivo `.zshrc`. É aqui que você vai alterar os parâmetros ou habilitar novos plugins ou alterar temas com base nas necessidades.
+
+## Temas OH-MY-ZSH
+
+Os temas melhoram visualmente a aparência e o comportamento do terminal. Os temas são instalados em “`~/.oh-my-zsh/themes/`“.
+
+```bash
+ls -la ~/.oh-my-zsh/themes/
+```
+
+Para que as alterações tenham efeito, execute:
+
+```bash
+source ~/.zshrc
+```
+
+## Plugins OH-MY-ZSH
+
+Há toneladas de plugins que são suportados pelo **OH-MY-ZSH**. Configurar um plugin é bem fácil.
+Tudo o que você precisa fazer é obter o pacote do plugin e adicionar o nome do plugin no parâmetro plugins no arquivo `.zshrc`.
+Por padrão, o **git** é o único plugin que é habilitado após a instalação.
+
+Adicione dois plugins `ZSH-autosuggestions` e `ZSH-Syntax-highlighting` clonando os pacotes.
+
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+```
+
+Para tornar os plugins eficazes, editar o arquivo `.zhsrc` e adicione os nomes dos plugins em `plugins=()` com um espaço entre cada nome.
+
+![Plugins OH-MY-ZSH](assets/img/plugins-zsh.png)
+
+```text
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+```
+
+Crie o arquivo source (`source ~/.zshrc`) para que as alterações sejam efetivas. 
+Agora você pode ver na captura de tela que o recurso de autossugestão está habilitado e ele lembra o comando que usei anteriormente e sugere com base nele.
+
+![Autocomplete](assets/img/Autocomplete.png)
+
+## Atualização automática
+
+O **OH-MY-ZSH** verifica automaticamente se há atualizações quinzenalmente. Para desativá-lo, defina o parâmetro `DISABLE_AUTO_UPDATE=”true”`.
+Você também pode controlar o número de dias em que a atualização deve ser executada definindo `export UPDATE_ZSH_DAYS=<NUMBER OF DAYS>`.
+
+## Removendo do Ubuntu Linux
+
+Execute o comando:
+
+```bash
+uninstall oh_my_zsh
+```
+
+Ele removerá todos os arquivos e pastas necessários que fazem parte do **OH-MY-ZSH** e reverterá para o estado anterior. **Reinicie seu terminal para que as alterações sejam efetivadas**.
+
+# NVM
+
+### O que é o NVM?
+
+O **NVM (Node Version Manager)** é uma ferramenta que permite gerenciar múltiplas versões do Node.js no mesmo ambiente. Com ele, é possível instalar, alternar e utilizar diferentes versões do Node.js de forma simples e eficiente, garantindo compatibilidade com projetos que dependem de versões específicas.
+Isso é especialmente útil para desenvolvedores que trabalham com aplicações variadas em diferentes ambientes.
+
+### Instalação do NVM
+
+> É recomendado desinstalar qualquer versão do Node.js presente em sua máquina antes de instalar o NVM para evitar colisões.
+
+Para instalar o NVM basta usar o curl ou Wget. Execute no terminal:
+
+```bash
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+# ou
+$ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+```
+
+Isso vai executar um script que vai clonar o repositório do NVM e jogar em um diretório chamado `~/.nvm`, que é onde serão instaladas as várias versões do Node.js que quisermos.
+
+> Após instalar, pode ser necessário reiniciar o seu terminal.
+
+### Comandos Básicos
+
+Os comandos são bem simples.
+
+Para ver as versões que estão instaladas em sua máquina:
+
+| Comando       |                                   Descrição                                   |
+|:--------------|:-----------------------------------------------------------------------------|
+| ```nvm ls```  |                           Listar versões instaladas                           |
+| ```nvm ls-remote```  |                  Listar versões disponíveis para instalação                   |
+| ```nvm install vX.X.X```  |                              Instalar uma versão                              |
+| ```nvm uninstall vX.X.X```  |                            Desinstalar uma versão                             |
+| ```nvm use vX.X.X```  |                          Usar uma versão do Node.js                           |
+| ```nvm use node```  |                     Usar a versão mais recente do Node.js                     |
+| ```nvm alias meunome vX.X.X```  |                         Definir nome para uma versão                          |
+| ```nvm use meunome```  |                        Usar versão pelo nome definido                         |
+| ```nvm unalias meunome```  |                           Remover um nome de versão                           |
+| ```nvm alias default vX.X.X```  |                           Definir uma versão padrão                           |
+| ```nvm alias default node```  |                    Definir versão mais recente como padrão                    |
+| ```nvm  current```  |                           Indicação da versão atual                           |
+
+### Migração de pacotes globais
+
+
+Quando você altera a versão do Node.js em uso, a versão do NPM também muda. Isso significa que os pacotes instalados globalmente em uma versão não estarão disponíveis ao utilizar outra.
+Para evitar o trabalho de reinstalar cada pacote global ao mudar de versão do Node.js, você pode usar a opção `--reinstall-packages-from`.
+
+Por exemplo, ao instalar a **versão 6** do Node.js, você pode usar esse comando para transferir automaticamente os pacotes globais instalados na **versão 5**, simplificando a transição entre versões.
+
+```bash
+nvm install 6 --reinstall-packages-from=5
+```
+
+Como mencionado, `node` é um atalho para indicar a versão mais recente. Caso queira instalar a versão mais recente disponível e já migrar os pacotes globais da versão mais recente que está instalada na sua máquina, basta executar:
+
+```bash
+nvm install node --reinstall-packages-from=node
+```
+
+> Execute o nvm dentro do WSL. No momento esta funcionalidade ainda não está disponível para o nvm-windows, sendo necessária a instalação manual dos pacotes globais sempre que instalar uma nova versão do Node.js.
+
+### Definição de versão por projeto
+
+O objetivo de usar o **NVM** é gerenciar diferentes versões do Node.js para cada projeto. No entanto, pode ser difícil lembrar qual versão foi usada em cada um.
+Para resolver isso, basta criar um arquivo chamado `.nvmrc` na raiz do projeto e inserir a versão do Node.js usada nesse projeto. Por exemplo:
+
+```text
+v12.4.0
+```
+
+Assim, ao abrir o terminal dentro do projeto e executar o comando `nvm use`, o NVM localizará automaticamente o arquivo `.nvmrc` e utilizará a versão indicada, garantindo consistência no ambiente.
+
+
+# Fontes
+
+- [Site Oh My Zsh](https://ohmyz.sh/)
+- [Como instalar o OH-MY-ZSH no Ubuntu 20.04](https://www.tecmint.com/install-oh-my-zsh-in-ubuntu/)
+- [Projeto NVM no GitHub](https://github.com/nvm-sh)
