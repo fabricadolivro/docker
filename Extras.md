@@ -23,7 +23,7 @@
     <strong>ZSH</strong>
   </summary>
 
-- [Vantagens do ZSH sobre o Bash](#Vantagens do ZSH sobre o Bash)
+- [Vantagens do ZSH sobre o Bash](#vantagens-do-zsh-sobre-o-bash)
 - [Instale o ZSH](#instale-o-zsh)
 - [Configurando o ZSH no Ubuntu Linux](#configurando-o-zsh-no-ubuntu-linux)
 - [Reverter para o antigo Bash Shell](#reverter-para-o-antigo-bash-shell)
@@ -181,7 +181,7 @@ Comparado a outros shells como BASH , o ZSH requer alguma configuração inicial p
 Selecionando a opção “**1**” na primeira página, nos levará ao menu principal para configurar manualmente cada opção.
 Podemos escolher a opção "**2**" que preencherá o arquivo `.zshrc` com a configuração padrão. Podemos alterar os parâmetros diretamente no arquivo `.zshrc`.
 
-![Zsh Default Parameters](Zsh-Default-Parameters.png)
+![Zsh Default Parameters](assets/img/Zsh-Default-Parameters.png)
 
 ### Reverter para o antigo Bash Shell
 
