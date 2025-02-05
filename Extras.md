@@ -1,10 +1,10 @@
 <p align="center">
-  <a href="https://fabricadolivro.com.br/" target="blank"><img src="assets/fabricadolivro-logo.svg"/></a>
+  <a href="https://fabricadolivro.com.br/" target="blank"><img src="assets/fabricadolivro-logo.svg" alt="Logo"/></a>
 </p>
 
 # Ferramentas Extras
 
-> Todo conte˙do desta seÁ„o È opcional e n„o mandatÛrio para o desenvolvimento.
+> Todo conte√∫do desta se√ß√£o √© opcional e n√£o mandat√≥rio para o desenvolvimento.
 
 <details open>
   <summary>
@@ -13,9 +13,9 @@
 
 - [Limitar recursos usados pelo WSL 2](#limitar-recursos-usados-pelo-wsl-2)
 - [Systemd](#systemd)
-- [O que È WSLg](#o-que-È-wslg)
-     - [Arquitetura do WSLg](#arquitetura-do-wslg)
-     - [Como ativar o WSLg](#como-ativar-o-wslg)
+- [O que √© WSLg](#o-que-√©-wslg)
+  - [Arquitetura do WSLg](#arquitetura-do-wslg)
+  - [Como ativar o WSLg](#como-ativar-o-wslg)
 </details>
 
 <details>
@@ -35,10 +35,10 @@
   </summary>
 
 - [Requisitos](#requisitos)
-- [InstalaÁ„o OH-MY-ZSH](#instalaÁ„o-oh-my-zsh)
+- [Instala√ß√£o OH-MY-ZSH](#instala√ß√£o-oh-my-zsh)
 - [Temas OH-MY-ZSH](#temas-oh-my-zsh)
 - [Plugins OH-MY-ZSH](#plugins-oh-my-zsh)
-- [AtualizaÁ„o autom·tica](#atualizaÁ„o-autom·tica)
+- [Atualiza√ß√£o autom√°tica](#atualiza√ß√£o-autom√°tica)
 - [Removendo do Ubuntu Linux](#removendo-do-ubuntu-linux)
 </details>
 
@@ -47,25 +47,25 @@
     <strong>NVM</strong>
   </summary>
 
-- [ConheÁa o NVM!](#conheca-o-nvm)
-- [InstalaÁ„o do NVM](#instalacao-do-nvm)
-- [Comandos B·sicos](#comandos-basicos)
-- [MigraÁ„o de pacotes globais](#migraÁ„o-de-pacotes-globais)
-- [DefiniÁ„o de vers„o por projeto](#definiÁ„o-de-vers„o-por-projeto)
+- [Conhe√ßa o NVM!](#conheca-o-nvm)
+- [Instala√ß√£o do NVM](#instalacao-do-nvm)
+- [Comandos B√°sicos](#comandos-basicos)
+- [Migra√ß√£o de pacotes globais](#migra√ß√£o-de-pacotes-globais)
+- [Defini√ß√£o de vers√£o por projeto](#defini√ß√£o-de-vers√£o-por-projeto)
 </details>
 
 # WSL
 
 ## Limitar recursos usados pelo WSL 2
 
-Podemos dizer que o WSL 2 tem acesso quase que total ao recursos de sua m·quina. Ele tem acesso por padr„o:
+Podemos dizer que o WSL 2 tem acesso quase que total ao recurso da sua m√°quina. Ele tem acesso por padr√£o:
 
-* A 1TB de disco rÌgido. … criado um disco virtual de 1TB para armazenar os arquivos do Linux (este limite pode ser expandido, ver a ·rea de dicas e truques).
+* A 1TB de disco r√≠gido. √â criado um disco virtual de 1TB para armazenar os arquivos do Linux (este limite pode ser expandido, ver a √°rea de dicas e truques).
 * A usar completamente os recursos de processamento.
-* A usar 50% da memÛria RAM disponÌvel.
-* A usar 25% da memÛria disponÌvel para SWAP (memÛria virtual).
+* A usar 50% da mem√≥ria RAM dispon√≠vel.
+* A usar 25% da mem√≥ria dispon√≠vel para SWAP (mem√≥ria virtual).
 
-Se vocÍ quiser personalizar estes limites, crie um arquivo chamado `.wslconfig` na raiz da sua pasta de usu·rio `(C:\Users\<seu_usuario>)` e defina estas configuraÁıes:
+Se voc√™ quiser personalizar estes limites, crie um arquivo chamado `.wslconfig` na raiz da sua pasta de usu√°rio `(C:\Users\<seu_usuario>)` e defina estas configura√ß√µes:
 
 ```conf
 [wsl2]
@@ -73,21 +73,21 @@ memory=8GB
 processors=4
 ```
 
-Estes s„o limites de exemplo e as configuraÁıes mais b·sicas a serem utilizadas, configure-os ‡s suas disponibilidades.
+Estes s√£o limites de exemplo e as configura√ß√µes mais b√°sicas a serem utilizadas, configure-os √†s suas disponibilidades.
 
-Para mais detalhes veja esta documentaÁ„o da Microsoft: <a href="https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig" target="_blank">https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig</a>. Existem outras configuraÁıes que podem ser feitas, como configuraÁıes de rede, VPN, liberaÁ„o de memÛria, etc.
+Para mais detalhes veja esta documenta√ß√£o da Microsoft: <a href="https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig" target="_blank">https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig</a>. Existem outras configura√ß√µes que podem ser feitas, como configura√ß√µes de rede, VPN, libera√ß√£o de mem√≥ria, etc.
 
-> Para aplicar estas configuraÁıes È necess·rio reiniciar as distribuiÁıes Linux. Execute o comando: `wsl --shutdown` (Este comando vai desligar todas as inst‚ncias WSL 2 ativas, basta abrir o terminal novamente para usa-las j· com as novas configuraÁıes).
+> Para aplicar estas configura√ß√µes √© necess√°rio reiniciar as distribui√ß√µes Linux. Execute o comando: `wsl --shutdown` (Este comando vai desligar todas as inst√¢ncias WSL 2 ativas, basta abrir o terminal novamente para us√°-las j√° com as novas configura√ß√µes).
 
-Este arquivo `.wslconfig` È um arquivo de configuraÁ„o global, ou seja, ele afetar· todas as distribuiÁıes Linux que vocÍ tiver instalado no WSL 2, porque vocÍ pode ter mais de uma distribuiÁ„o Linux instalada no WSL 2, como um Ubuntu, um Debian, um Fedora, etc.
+Este arquivo `.wslconfig` √© um arquivo de configura√ß√£o global, ou seja, ele afetar√° todas as distribui√ß√µes Linux que voc√™ tiver instalado no WSL 2, porque voc√™ pode ter mais de uma distribui√ß√£o Linux instalada no WSL 2, como um Ubuntu, um Debian, um Fedora, etc.
 
 ## Systemd
 
-O WSL È compatÌvel com o `systemd`. O `systemd` È um sistema de inicializaÁ„o e gerenciamento de serviÁos que È amplamente utilizado em distribuiÁıes Linux modernas. Ela permitir· que vocÍ use ferramentas mais complexas no Linux como snapd, LXD, etc.
+O WSL √© compat√≠vel com o `systemd`. O `systemd` √© um sistema de inicializa√ß√£o e gest√£o de servi√ßos amplamente utilizado em distribui√ß√µes Linux modernas. Ela permitir√° que voc√™ use ferramentas mais complexas no Linux como snapd, LXD, etc.
 
-N„o È obrigatÛrio ativa-lo e a qualquer momento ele pode ser desativado e reativado. Mas, recomendamos que o mantenha ativado, porque ele melhorar· a compatibilidade com as distribuiÁıes Linux, permitindo que vocÍ use mais ferramentas e serviÁos, como Kubernetes, etc (Ele n„o È necess·rio para rodar o Docker).
+N√£o √© obrigat√≥rio ativ√°-lo e a qualquer momento ele pode ser desativado e reativado. Mas, recomendamos que o mantenha ativado, porque ele melhorar√° a compatibilidade com as distribui√ß√µes Linux, permitindo que voc√™ use mais ferramentas e servi√ßos, como Kubernetes, etc (Ele n√£o √© necess√°rio para rodar o Docker).
 
-Para ativa-lo, edite o arquivo `/etc/wsl.conf`:
+Para ativ√°-lo, edite o arquivo `/etc/wsl.conf`:
 
 Rode o comando para editar:
 
@@ -95,36 +95,36 @@ Rode o comando para editar:
 sudo vim /etc/wsl.conf
 ```
 
-Aperte a letra `i` ou `insert` (para entrar no modo de inserÁ„o de conte˙do) e cole o conte˙do:
+Aperte a letra `i` ou `insert` (para entrar no modo de inser√ß√£o de conte√∫do) e cole o conte√∫do:
 
 ```conf
 [boot]
 systemd = true
 ```
 
-Quando terminar a ediÁ„o, pressione `Esc`, em seguida tecle `:` para entrar com o comando `wq` (salvar e sair) e pressione `enter`.
+Quando terminar a edi√ß√£o, pressione `Esc`, em seguida tecle `:` para entrar com o comando `wq` (salvar e sair) e pressione `enter`.
 
-Toda vez que esta mudanÁa for realizada È necess·rio reiniciar o WSL com o comando `wsl --shutdown` no DOS ou PowerShell.
+Toda vez que esta mudan√ßa for realizada √© necess√°rio reiniciar o WSL com o comando `wsl --shutdown` no DOS ou PowerShell.
 
-## O que È WSLg
+## O que √© WSLg
 
-O WSLg È uma extens„o do WSL 2 que permite rodar aplicaÁıes gr·ficas do Linux no Windows. Ele È uma extens„o do WSL 2 e n„o È necess·rio instalar nada adicional, basta ter o WSL 2 instalado e atualizado.
+O WSLg √© uma extens√£o do WSL 2 que permite rodar aplica√ß√µes gr√°ficas do Linux no Windows. Ele √© uma extens√£o do WSL 2 e n√£o √© necess√°rio instalar nada adicional, basta ter o WSL 2 instalado e atualizado.
 
-Com ele È possÌvel rodar aplicaÁıes como Chrome, Firefox, Gedit, IDEs (VSCode, JetBrains) e atÈ aplicaÁıes gr·ficas feitas em Java, Python e etc.
+Com ele √© poss√≠vel rodar aplica√ß√µes como Chrome, Firefox, Gedit, IDEs (VSCode, JetBrains) e at√© aplica√ß√µes gr√°ficas feitas em Java, Python e etc.
 
 ### Arquitetura do WSLg
 
-O WSLg È composto pelos componentes: Wayland, Weston, PulseAudio e CBL-Mariner.
+O WSLg √© uma extens√£o do WSL 2 que permite rodar aplica√ß√µes gr√°ficas do Linux no Windows. Ele √© uma extens√£o do WSL 2 e n√£o √© necess√°rio instalar nada adicional, basta ter o WSL 2 instalado e atualizado.
 
-Basicamente teremos o Wayland como servidor gr·fico, o Weston como compositor, o PulseAudio para ·udio e o CBL-Mariner como distribuiÁ„o Linux para rodar as aplicaÁıes gr·ficas.
+Com ele √© poss√≠vel rodar aplica√ß√µes como Chrome, Firefox, Gedit, IDEs (VSCode, JetBrains) e at√© aplica√ß√µes gr√°ficas feitas em Java, Python, etc.
 
 ![Arquitetura do WSLg](assets/img/WSLg_ArchitectureOverview.png)
 
 ### Como ativar o WSLg
 
-Para ativar o WSLg, basta ter o WSL 2 instalado e atualizado. N„o È necess·rio instalar nada adicional.
+Para ativar o WSLg, basta ter o WSL 2 instalado e atualizado. N√£o √© necess√°rio instalar nada adicional.
 
-Quando instalar algum aplicativo que dependente de interface gr·fica, o WSLg ser· ativado automaticamente. Vamos a um exemplo:
+Quando instalar algum aplicativo que dependente de interface gr√°fica, o WSLg ser√° ativado automaticamente. Vamos a um exemplo:
 
 ```bash
 sudo apt-get update
@@ -132,23 +132,23 @@ sudo apt-get update
 sudo apt-get install gedit
 ```
 
-Abra o Gedit no terminal do WSL 2 digitando `gedit` e ele ser· aberto no Windows.
+Abra o Gedit no terminal do WSL 2 digitando `gedit` e ele ser√° aberto no Windows.
 
-Portanto basta instalar o aplicativo e lanÁa-lo no terminal do WSL 2 para que ele seja aberto no Windows.
+Portanto, basta instalar o aplicativo e lan√ßa-lo no terminal do WSL 2 para que ele seja aberto no Windows.
 
 # ZSH
 
-O ZSH (Z Shell) È um shell poderoso e personaliz·vel para sistemas UNIX, como Linux e macOS. Ele È uma alternativa ao Bash (Bourne Again Shell), oferecendo recursos avanÁados que tornam o uso do terminal mais eficiente e produtivo.
+O ZSH (Z Shell) √© um shell poderoso e personaliz√°vel para sistemas UNIX, como Linux e macOS. Ele √© uma alternativa ao Bash (Bourne Again Shell), oferecendo recursos avan√ßados que tornam o uso do terminal mais eficiente e produtivo.
 
 ## Vantagens do ZSH sobre o Bash:
 
-- **Autocompletar Inteligente**: Sugestıes autom·ticas para comandos e opÁıes.
-- **Temas e Plugins**: Personalize a aparÍncia do terminal e adicione funcionalidades extras facilmente.
-- **CorreÁ„o de Comandos**: Identifica e corrige erros de digitaÁ„o em comandos.
-- **HistÛrico Aprimorado**: Pesquisa r·pida e eficiente no histÛrico de comandos.
-- **Glob Patterns AvanÁados**: Melhor manipulaÁ„o de arquivos e diretÛrios.
+- **Autocompletar Inteligente**: Sugest√µes autom√°ticas para comandos e op√ß√µes.
+- **Temas e Plugins**: Personalize a apar√™ncia do terminal e adicione funcionalidades extras facilmente.
+- **Corre√ß√£o de Comandos**: Identifica e corrige erros de digita√ß√£o em comandos.
+- **Hist√≥rico Aprimorado**: Pesquisa r√°pida e eficiente no hist√≥rico de comandos.
+- **Glob Patterns Avan√ßados**: Melhor manipula√ß√£o de arquivos e diret√≥rios.
 
-Combinado com ferramentas como **Oh My Zsh**, o ZSH proporciona uma experiÍncia mais moderna e produtiva no terminal.
+Combinado com ferramentas como **Oh My Zsh**, o ZSH proporciona uma experi√™ncia mais moderna e produtiva no terminal.
 
 ## Instale o ZSH
 
@@ -158,10 +158,10 @@ Use o **gerenciador de pacotes apt** para instalar o **ZSH** no **Ubuntu**.
 sudo apt install zsh
 ```
 
-> O apt instalar· a vers„o mais recente do **ZSH**. Para ver digite: `zsh --version`
+> O apt instalar√° a vers√£o mais recente do **ZSH**. Para ver digite: `zsh --version`
 
-Instalar o **ZSH** n„o ir· modific·-lo e defini-lo como o shell padr„o. Temos que modificar as configuraÁıes para tornar o ZSH nosso shell padr„o.
-Use o comando `chsh` com flag `-s` para alternar o shell padr„o para o usu·rio.
+Instalar o **ZSH** n√£o ir√° modific√°-lo e defini-lo como o shell padr√£o. Temos que modificar as configura√ß√µes para tornar o ZSH nosso shell padr√£o.
+Use o comando `chsh` com flag `-s` para alternar o shell padr√£o para o usu√°rio.
 
 ```bash
 echo $SHELL
@@ -172,14 +172,14 @@ chsh -s /usr/bin/zsh
  
 ![Set Zsh Shell in Ubuntu](assets/img/set_zsh_shell_in_ubuntu.png)
 
-Agora, saia do terminal e faÁa login novamente.
+Agora, saia do terminal e fa√ßa login novamente.
 
 ### Configurando o ZSH no Ubuntu Linux
 
-Comparado a outros shells como BASH , o ZSH requer alguma configuraÁ„o inicial para ser mantido. Quando vocÍ inicia o ZSH **pela primeira vez**, ele lhe dar· algumas opÁıes para configurar.
+Comparado a outros shells como BASH, o ZSH requer alguma configura√ß√£o inicial para ser mantido. Quando voc√™ inicia o ZSH **pela primeira vez**, ele lhe dar√° algumas op√ß√µes para configurar.
 
-Selecionando a opÁ„o ì**1**î na primeira p·gina, nos levar· ao menu principal para configurar manualmente cada opÁ„o.
-Podemos escolher a opÁ„o "**2**" que preencher· o arquivo `.zshrc` com a configuraÁ„o padr„o. Podemos alterar os par‚metros diretamente no arquivo `.zshrc`.
+Selecionando a op√ß√£o "**1**" na primeira p√°gina, nos levar√° ao menu principal para configurar manualmente cada op√ß√£o.
+Podemos escolher a op√ß√£o "**2**" que preencher√° o arquivo `.zshrc` com a configura√ß√£o padr√£o. Podemos alterar os par√¢metros diretamente no arquivo `.zshrc`.
 
 ![Zsh Default Parameters](assets/img/Zsh-Default-Parameters.png)
 
@@ -192,18 +192,18 @@ sudo apt --purge remove zsh
 chsh -s $(which "SHELL NAME")
 ```
 
-Agora abra uma nova sess„o para ver as alteraÁıes que ser„o efetivadas.
+Agora abra uma nova sess√£o para ver que altera√ß√µes ser√£o efetivadas.
 
 # Oh My ZSH
 
-<a href="https://ohmyz.sh/" target="_blank">**OH-MY-ZSH**</a> È um framework de cÛdigo aberto para gerenciar a configuraÁ„o do **ZSH** e È conduzido pela comunidade. Ele vem com toneladas de funÁıes ˙teis, plugins, ajudantes, temas e algumas coisas que o tornar„o melhor no terminal. Atualmente, h· mais de **275** plugins e **150** temas suportados.
+<a href="https://ohmyz.sh/" target="_blank">**OH-MY-ZSH**</a> √© um framework de c√≥digo aberto para gerir a configura√ß√£o do ZSH sendo conduzido pela comunidade. Ele vem com toneladas de fun√ß√µes √∫teis, plugins, ajudantes, temas e algumas coisas que o tornar√£o melhor no terminal. Atualmente, h√° mais de 275 plugins e 150 temas suportados.
 
 ### Requisitos
 - O Zsh deve ser instalado (v4.3.9 ou mais recente serviria, mas preferimos 5.0.8 e mais recentes).
 - Curl ou Wget devem ser instalados.
 - O Git deve ser instalado (recomenda-se v2.4.11 ou superior).
 
-## InstalaÁ„o OH-MY-ZSH
+## Instala√ß√£o OH-MY-ZSH
 
 ```bash
 sudo apt instalar curl wget git
@@ -213,20 +213,20 @@ Em seguida, <a href="https://ohmyz.sh/#install" target="_blank">instale o **Oh M
 
 ![Install Oh My Zsh](assets/img/install-Oh-My-Zsh.png)
 
-Depois que vocÍ instalar o **OH-MY-ZSH**, ele far· um backup do seu arquivo `.zhrc` existente.
-Ent„o, um novo `.zshrc` ser· criado com as configuraÁıes. Ent„o, sempre que vocÍ decidir remover o **OH-MY-ZSH** usando o desinstalador, o arquivo `.zshrc` ser· revertido automaticamente.
+Depois que voc√™ instalar o **OH-MY-ZSH**, ele far√° um backup do seu arquivo `.zhrc` existente.
+Ent√£o, um novo `.zshrc` ser√° criado com as configura√ß√µes. Ent√£o, sempre que voc√™ decidir remover o **OH-MY-ZSH** usando o desinstalador, o arquivo `.zshrc` ser√° revertido automaticamente.
 
-> Todas as configuraÁıes s„o colocadas no arquivo `.zshrc`. … aqui que vocÍ vai alterar os par‚metros ou habilitar novos plugins ou alterar temas com base nas necessidades.
+> Todas as configura√ß√µes s√£o colocadas no arquivo `.zshrc`. √â aqui que voc√™ vai alterar os par√¢metros ou habilitar novos plugins, ou alterar temas com base nas necessidades.
 
 ## Temas OH-MY-ZSH
 
-Os temas melhoram visualmente a aparÍncia e o comportamento do terminal. Os temas s„o instalados em ì`~/.oh-my-zsh/themes/`ì.
+Os temas melhoram visualmente a apar√™ncia e o comportamento do terminal. Os temas s√£o instalados em "`~/.oh-my-zsh/themes/`".
 
 ```bash
 ls -la ~/.oh-my-zsh/themes/
 ```
 
-Para que as alteraÁıes tenham efeito, execute:
+Para que as altera√ß√µes tenham efeito, execute:
 
 ```bash
 source ~/.zshrc
@@ -234,9 +234,9 @@ source ~/.zshrc
 
 ## Plugins OH-MY-ZSH
 
-H· toneladas de plugins que s„o suportados pelo **OH-MY-ZSH**. Configurar um plugin È bem f·cil.
-Tudo o que vocÍ precisa fazer È obter o pacote do plugin e adicionar o nome do plugin no par‚metro plugins no arquivo `.zshrc`.
-Por padr„o, o **git** È o ˙nico plugin que È habilitado apÛs a instalaÁ„o.
+H√° toneladas de plugins que s√£o suportados pelo **OH-MY-ZSH**. Configurar um plugin √© bem f√°cil.
+Tudo o que voc√™ precisa fazer √© obter o pacote do plugin e adicionar o nome do plugin no par√¢metro plugins no arquivo `.zshrc`.
+Por padr√£o, o **git** √© o √∫nico plugin que √© habilitado ap√≥s a instala√ß√£o.
 
 Adicione dois plugins `ZSH-autosuggestions` e `ZSH-Syntax-highlighting` clonando os pacotes.
 
@@ -245,7 +245,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugi
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 ```
 
-Para tornar os plugins eficazes, editar o arquivo `.zhsrc` e adicione os nomes dos plugins em `plugins=()` com um espaÁo entre cada nome.
+Para tornar os plugins eficazes, editar o arquivo `.zhsrc` e adicione os nomes dos plugins em `plugins=()` com um espa√ßo entre cada nome.
 
 ![Plugins OH-MY-ZSH](assets/img/plugins-zsh.png)
 
@@ -253,15 +253,15 @@ Para tornar os plugins eficazes, editar o arquivo `.zhsrc` e adicione os nomes d
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 ```
 
-Crie o arquivo source (`source ~/.zshrc`) para que as alteraÁıes sejam efetivas. 
-Agora vocÍ pode ver na captura de tela que o recurso de autossugest„o est· habilitado e ele lembra o comando que usei anteriormente e sugere com base nele.
+Crie o arquivo source (`source ~/.zshrc`) para que as altera√ß√µes sejam efetivas. 
+Agora voc√™ pode ver na captura de tela que o recurso de autossugest√£o est√° habilitado e ele lembra o comando que usei anteriormente e sugere com base nele.
 
 ![Autocomplete](assets/img/Autocomplete.png)
 
-## AtualizaÁ„o autom·tica
+## Atualiza√ß√£o autom√°tica
 
-O **OH-MY-ZSH** verifica automaticamente se h· atualizaÁıes quinzenalmente. Para desativ·-lo, defina o par‚metro `DISABLE_AUTO_UPDATE=îtrueî`.
-VocÍ tambÈm pode controlar o n˙mero de dias em que a atualizaÁ„o deve ser executada definindo `export UPDATE_ZSH_DAYS=<NUMBER OF DAYS>`.
+O **OH-MY-ZSH** verifica automaticamente se h√° atualiza√ß√µes quinzenalmente. Para desativ√°-lo, defina o par√¢metro `DISABLE_AUTO_UPDATE=true`.
+Voc√™ tamb√©m pode controlar o n√∫mero de dias em que a atualiza√ß√£o deve ser executada definindo `export UPDATE_ZSH_DAYS=<NUMBER OF DAYS>`.
 
 ## Removendo do Ubuntu Linux
 
@@ -271,18 +271,18 @@ Execute o comando:
 uninstall oh_my_zsh
 ```
 
-Ele remover· todos os arquivos e pastas necess·rios que fazem parte do **OH-MY-ZSH** e reverter· para o estado anterior. **Reinicie seu terminal para que as alteraÁıes sejam efetivadas**.
+Ele remover√° todos os arquivos e pastas necess√°rios que fazem parte do **OH-MY-ZSH** e reverter√° para o estado anterior. **Reinicie o seu terminal para que as altera√ß√µes sejam efetivadas**.
 
 # NVM
 
-### O que È o NVM?
+### O que √© o NVM?
 
-O **NVM (Node Version Manager)** È uma ferramenta que permite gerenciar m˙ltiplas versıes do Node.js no mesmo ambiente. Com ele, È possÌvel instalar, alternar e utilizar diferentes versıes do Node.js de forma simples e eficiente, garantindo compatibilidade com projetos que dependem de versıes especÌficas.
-Isso È especialmente ˙til para desenvolvedores que trabalham com aplicaÁıes variadas em diferentes ambientes.
+O **NVM (Node Version Manager)** √© uma ferramenta que permite gerir m√∫ltiplas vers√µes do Node.js no mesmo ambiente. Com ele, √© poss√≠vel instalar, alternar e utilizar diferentes vers√µes do Node.js de forma simples e eficiente, garantindo compatibilidade com projetos que dependem de vers√µes espec√≠ficas.
+Isso √© especialmente √∫til para desenvolvedores que trabalham com aplica√ß√µes variadas em diferentes ambientes.
 
-### InstalaÁ„o do NVM
+### Instala√ß√£o do NVM
 
-> … recomendado desinstalar qualquer vers„o do Node.js presente em sua m·quina antes de instalar o NVM para evitar colisıes.
+> √â recomendado desinstalar qualquer vers√£o do Node.js presente na sua m√°quina antes de instalar o NVM para evitar colis√µes.
 
 Para instalar o NVM basta usar o curl ou Wget. Execute no terminal:
 
@@ -292,61 +292,60 @@ $ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bas
 $ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
 
-Isso vai executar um script que vai clonar o repositÛrio do NVM e jogar em um diretÛrio chamado `~/.nvm`, que È onde ser„o instaladas as v·rias versıes do Node.js que quisermos.
+Isso vai executar um script que vai clonar o reposit√≥rio do NVM e jogar num diret√≥rio chamado `~/.nvm`, que √© onde ser√£o instaladas as v√°rias vers√µes do Node.js que quisermos.
 
-> ApÛs instalar, pode ser necess·rio reiniciar o seu terminal.
+> Ap√≥s instalar, pode ser necess√°rio reiniciar o seu terminal.
 
-### Comandos B·sicos
+### Comandos B√°sicos
 
-Os comandos s„o bem simples.
+Os comandos s√£o bem simples.
 
-Para ver as versıes que est„o instaladas em sua m·quina:
+Para ver que vers√µes est√£o instaladas na sua m√°quina:
 
-| Comando       |                                   DescriÁ„o                                   |
-|:--------------|:-----------------------------------------------------------------------------|
-| ```nvm ls```  |                           Listar versıes instaladas                           |
-| ```nvm ls-remote```  |                  Listar versıes disponÌveis para instalaÁ„o                   |
-| ```nvm install vX.X.X```  |                              Instalar uma vers„o                              |
-| ```nvm uninstall vX.X.X```  |                            Desinstalar uma vers„o                             |
-| ```nvm use vX.X.X```  |                          Usar uma vers„o do Node.js                           |
-| ```nvm use node```  |                     Usar a vers„o mais recente do Node.js                     |
-| ```nvm alias meunome vX.X.X```  |                         Definir nome para uma vers„o                          |
-| ```nvm use meunome```  |                        Usar vers„o pelo nome definido                         |
-| ```nvm unalias meunome```  |                           Remover um nome de vers„o                           |
-| ```nvm alias default vX.X.X```  |                           Definir uma vers„o padr„o                           |
-| ```nvm alias default node```  |                    Definir vers„o mais recente como padr„o                    |
-| ```nvm  current```  |                           IndicaÁ„o da vers„o atual                           |
+| Comando       | Descri√ß√£o                                  |
+|:--------------|:-------------------------------------------|
+| ```nvm ls```  | Listar vers√µes instaladas                  |
+| ```nvm ls-remote```  | Listar vers√µes dispon√≠veis para instala√ß√°o |
+| ```nvm install vX.X.X```  | Instalar uma vers√£o                        |
+| ```nvm uninstall vX.X.X```  | Desinstalar uma vers√£o                     |
+| ```nvm use vX.X.X```  | Usar uma vers√£o do Node.js                 |
+| ```nvm use node```  | Usar a vers√£o mais recente do Node.js      |
+| ```nvm alias meunome vX.X.X```  | Definir nome para uma vers√£o               |
+| ```nvm use meunome```  | Usar vers√£o pelo nome definido             |
+| ```nvm unalias meunome```  | Remover um nome de vers√£o                  |
+| ```nvm alias default vX.X.X```  | Definir uma vers√£o padr√£o                  |
+| ```nvm alias default node```  | Definir vers√£o mais recente como padr√£o    |
+| ```nvm  current```  | Indica√ß√£o da vers√£o atual                  |
 
-### MigraÁ„o de pacotes globais
+### Migra√ß√£o de pacotes globais
 
+Quando voc√™ altera a vers√£o do Node.js em uso, a vers√£o do NPM tamb√©m muda. Isso significa que os pacotes instalados globalmente numa vers√£o n√£o estar√£o dispon√≠veis ao utilizar outra.
+Para evitar o trabalho de reinstalar cada pacote global ao mudar de vers√£o do Node.js, voc√™ pode usar a op√ß√£o `--reinstall-packages-from`.
 
-Quando vocÍ altera a vers„o do Node.js em uso, a vers„o do NPM tambÈm muda. Isso significa que os pacotes instalados globalmente em uma vers„o n„o estar„o disponÌveis ao utilizar outra.
-Para evitar o trabalho de reinstalar cada pacote global ao mudar de vers„o do Node.js, vocÍ pode usar a opÁ„o `--reinstall-packages-from`.
-
-Por exemplo, ao instalar a **vers„o 6** do Node.js, vocÍ pode usar esse comando para transferir automaticamente os pacotes globais instalados na **vers„o 5**, simplificando a transiÁ„o entre versıes.
+Por exemplo, ao instalar a **vers√£o 6** do Node.js, voc√™ pode usar esse comando para transferir automaticamente os pacotes globais instalados na **vers√£o 5**, simplificando a transi√ß√£o entre vers√µes.
 
 ```bash
 nvm install 6 --reinstall-packages-from=5
 ```
 
-Como mencionado, `node` È um atalho para indicar a vers„o mais recente. Caso queira instalar a vers„o mais recente disponÌvel e j· migrar os pacotes globais da vers„o mais recente que est· instalada na sua m·quina, basta executar:
+Como mencionado, `node` √© um atalho para indicar a vers√£o mais recente. Caso queira instalar a vers√£o mais recente dispon√≠vel e j√° migrar os pacotes globais da vers√£o mais recente que est√° instalada na sua m√°quina, basta executar:
 
 ```bash
 nvm install node --reinstall-packages-from=node
 ```
 
-> Execute o nvm dentro do WSL. No momento esta funcionalidade ainda n„o est· disponÌvel para o nvm-windows, sendo necess·ria a instalaÁ„o manual dos pacotes globais sempre que instalar uma nova vers„o do Node.js.
+> Execute o nvm dentro do WSL. No momento esta funcionalidade ainda n√£o est√° dispon√≠vel para o nvm-windows, sendo necess√°ria a instala√ß√£o manual dos pacotes globais sempre que instalar uma nova vers√£o do Node.js.
 
-### DefiniÁ„o de vers„o por projeto
+### Defini√ß√£o de vers√£o por projeto
 
-O objetivo de usar o **NVM** È gerenciar diferentes versıes do Node.js para cada projeto. No entanto, pode ser difÌcil lembrar qual vers„o foi usada em cada um.
-Para resolver isso, basta criar um arquivo chamado `.nvmrc` na raiz do projeto e inserir a vers„o do Node.js usada nesse projeto. Por exemplo:
+O objetivo de usar o **NVM** √© gerir diferentes vers√µes do Node.js para cada projeto. No entanto, pode ser dif√≠cil lembrar qual vers√£o foi usada em cada um.
+Para resolver isso, basta criar um arquivo chamado `.nvmrc` na raiz do projeto e inserir a vers√£o do Node.js usada nesse projeto. Por exemplo:
 
 ```text
 v12.4.0
 ```
 
-Assim, ao abrir o terminal dentro do projeto e executar o comando `nvm use`, o NVM localizar· automaticamente o arquivo `.nvmrc` e utilizar· a vers„o indicada, garantindo consistÍncia no ambiente.
+Assim, ao abrir o terminal dentro do projeto e executar o comando `nvm use`, o NVM localizar√° automaticamente o arquivo `.nvmrc` e utilizar√° a vers√£o indicada, garantindo consist√™ncia no ambiente.
 
 # Fontes
 

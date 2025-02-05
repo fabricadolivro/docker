@@ -124,16 +124,16 @@ up_admin:
 down_admin:
 	@echo
 
-#   Você só precisa executar down e up se fez alterações na configuração do
-#	docker-compose.yml, como mudanças nos volumes, portas ou outros parâmetros
-#	que afetam a inicialização do container.
+#   VocÃª sÃ³ precisa executar down e up se fez alteraÃ§Ãµes na configuraÃ§Ã£o do
+#	docker-compose.yml, como mudanÃ§as nos volumes, portas ou outros parÃ¢metros
+#	que afetam a inicializaÃ§Ã£o do container.
 
 up:
 #	make stop_services
 #	make up_admin
 	make up_ecommerce
 	make up_editor
-#	@echo "Ajustando permissões da pasta mongodb..."
+#	@echo "Ajustando permissÃ³es da pasta mongodb..."
 #	sudo chown -R 999:999 ./mongodb
 #	sudo chmod -R 700 ./mongodb
 	docker compose -f docker-compose.yml up -d
@@ -149,7 +149,7 @@ up:
 	docker exec -it ${APP_SLUG}-php72 sh -c "cd ecommerce-backend && php artisan key:generate"
 #	@echo "[php72::ecommerce-frontend 1/2] npm install"
 #	docker exec -it ${APP_SLUG}-node sh -c "cd ecommerce-frontend && npm install && npm run build-test"
-#	@echo "[node::ecommerce-frontend 2/2] Ajustando permissões de pasta."
+#	@echo "[node::ecommerce-frontend 2/2] Ajustando permissÃµes de pasta."
 #	docker exec -it ${APP_SLUG}-node chmod 755 -R /srv/ecommerce-frontend
 	docker exec ${APP_SLUG}-node sh -c "cd srv/admin-frontend && npm run dev -- -p 3001 &"
 	@echo "-------------------------------------------------------"
