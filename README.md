@@ -83,12 +83,10 @@ wsl --set-default-version 2
 
 Recomendamos o uso do <a href="https://docs.microsoft.com/pt-br/windows/terminal/get-started/" target="_blank">Windows Terminal</a> como terminal padrão para desenvolvimento no Windows.
 
-Por padrão, ele identificará e agregará o shell do Ubuntu e os principais shells instalados no Windows, como PowerShell, CMD e WSL numa única janela, além de permitir personalização de cores, temas, atalhos e muito mais.
+Por padrão, ele identificará e agregará o shell do Ubuntu (que iremos instalar a seguir) e os principais shells instalados no Windows, como PowerShell, CMD e WSL numa única janela, além de permitir personalização de cores, temas, atalhos e muito mais.
 A experiência de usar o Windows Terminal é muito melhor que o terminal padrão do Windows, use ele para desenvolver no Windows e também para acessar o WSL 2.
 
 Instale-o pelo **Windows Store**. Veja mais opções de configuração dele em <a href="https://docs.microsoft.com/pt-br/windows/terminal/get-started/" target="_blank">Mais sobre o Windows Terminal</a>.
-
-> Para uma experiência de shell mais moderna e eficiente, recomendamos o uso do **Oh My Zsh**. Consulte o arquivo [Extras.md](Extras.md#oh-my-zsh) para instruções de instalação.
 
 ### Instale o Ubuntu
 
@@ -247,6 +245,7 @@ A partir deste ponto, execute todos os comandos a partir daqui no terminal do <b
 Para acessá-lo abrar um nova aba do Terminal do Windows (recomendado) ou digite `wsl` no PowerShell.
 </span>
 
+> Para uma experiência de shell mais moderna e eficiente, recomendamos o uso do **Oh My Zsh**. Consulte o arquivo [Extras.md](Extras.md#oh-my-zsh) para instruções de instalação.
 
 # Git & GitHub
 
