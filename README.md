@@ -282,6 +282,8 @@ Para verificar se os valores foram definidos corretamente:
 git config --global --list
 ```
 
+> Mais detalhes no artigo <a href="https://docs.github.com/pt/get-started/git-basics/setting-your-username-in-git" target="_blank">Definir seu nome de usuário no Git</a> no GitHub.
+
 ### Comunicação entre Git e GitHub com SSH
 
 O Git e o GitHub podem se comunicar de forma segura usando chaves SSH. Isso elimina a necessidade de inserir credenciais repetidamente (via HTTPS), automatizando e protegendo a autenticação.
