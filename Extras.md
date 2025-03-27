@@ -166,8 +166,8 @@ Use o comando `chsh` com flag `-s` para alternar o shell padrão para o usuário
 ```bash
 echo $SHELL
 chsh -s $(which zsh) 
-# ou
-chsh -s /usr/bin/zsh
+# ou chsh -s /usr/bin/zsh
+grep zsh /etc/passwd
 ```
  
 ![Set Zsh Shell in Ubuntu](assets/img/set_zsh_shell_in_ubuntu.png)
