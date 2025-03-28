@@ -381,9 +381,9 @@ Hi <username>! You've successfully authenticated, but GitHub does not provide sh
 
 # Ambiente de Desenvolvimento
 
-## Repositórios e Hosts
+## repositórios e Hosts
 
-### Clonando os Repositórios
+### Clonando os repositórios
 
 Dentro do diretório home do usuário atual crie a pasta raiz dos repositórios. Executando:
 
@@ -432,7 +432,7 @@ Edite o arquivo ```hosts``` presente na pasta de configurações de rede no Wind
 127.0.0.1 editor-frontend.fabricadolivro.lab
 ```
 
-## Make
+### Make
 
 O Make é uma ferramenta de automação de tarefas que permite a execução de comandos de forma mais simples e rápida. Ele é muito útil para automatizar tarefas repetitivas e complexas.
 Instale o Make no Ubuntu caso não tenha:
@@ -441,7 +441,7 @@ Instale o Make no Ubuntu caso não tenha:
 sudo apt install make
 ```
 
-## Build 
+## Docker 
 
 Para utilizar os comandos Docker/Make a seguir no terminal do Linux, é necessário ter o **Docker Desktop** instalado e rodando no Windows.
 
