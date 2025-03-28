@@ -11,6 +11,7 @@
     <strong>WSL</strong>
   </summary>
 
+- [Requisitos mínimos do WSL 2](#requisitos-mínimos-do-wsl-2)
 - [Configurações do WSL](#configurações-do-wsl)
 - [Limitar recursos usados pelo WSL 2](#limitar-recursos-usados-pelo-wsl-2)
 - [Systemd](#systemd)
@@ -20,6 +21,17 @@
 - [Integrações](#integrações)
   - [Integração com VSCode](#integração-com-vscode) 
   - [Integração com PhpStorm](#integração-com-phpstorm) 
+</details>
+
+<details>
+  <summary>
+    <strong>Docker</strong>
+  </summary>
+
+- [Vantagens & Desvantagens](#vantagens--desvantagens)
+- [Dicas & Truques](#dicas--truques)
+  - [Otimizar recursos do Docker Desktop](#otimizar-recursos-do-docker-desktop)
+  - [Aplicar autoMemoryReclaim no WSL 2](#aplicar-automemoryreclaim-no-wsl-2)
 </details>
 
 <details>
@@ -60,6 +72,20 @@
 
 # WSL
 
+O WSL oferece melhor desempenho, compatibilidade total com chamadas do sistema Linux e suporte a ferramentas de
+desenvolvimento como Docker e Kubernetes, facilitando a criação e o uso de ambientes de desenvolvimento híbridos
+diretamente no Windows.
+
+## Requisitos mínimos do WSL 2
+
+* **Windows 10 Home ou Professional**
+    - Versão 2004 ou superior (Build 19041 ou superior).
+    - Versões mais antigas requerem a instalação manual do WSL 2. <a href="https://learn.microsoft.com/en-us/windows/wsl/install-manual/" target="_blank">Ver tutorial</a>.
+* **Windows 11 Home ou Professional**
+    - Versão 22000 ou superior (qualquer Windows 11).
+* Uma máquina compatível com virtualização. (Se a sua máquina for mais antiga pode ser necessária habilitá-la na BIOS).
+* Pelo menos 4GB de memória RAM (Recomendado 8GB).
+
 ## Configurações do WSL
 
 O WSL 2 vem com uma aplicação chamada **Configurações do WSL** que permite configurar o WSL 2 de forma mais fácil e rápida.
@@ -80,7 +106,7 @@ Podemos dizer que o WSL 2 tem acesso quase que total ao recurso da sua máquina.
 * A usar 50% da memória RAM disponível.
 * A usar 25% da memória disponível para SWAP (memória virtual).
 
-Se você quiser personalizar estes limites manualmente, crie um arquivo chamado `.wslconfig` na raiz da sua pasta de usuário `(C:\Users\<seu_usuario>)` e defina estas configurações:
+Se você quiser personalizar estes limites manualmente, crie um arquivo chamado `.wslconfig` na raiz da sua pasta de usuário (`%USERPROFILE%`) e defina estas configurações:
 
 ```conf
 [wsl2]
@@ -92,19 +118,35 @@ Estes são limites de exemplo e as configurações mais básicas a serem utiliza
 
 Para mais detalhes veja esta documentação da Microsoft: <a href="https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig" target="_blank">https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig</a>. Existem outras configurações que podem ser feitas, como configurações de rede, VPN, liberação de memória, etc.
 
-> Para aplicar estas configurações é necessário reiniciar as distribuições Linux. Execute o comando: `wsl --shutdown` (Este comando vai desligar todas as instâncias WSL 2 ativas, basta abrir o terminal novamente para usá-las já com as novas configurações).
+> 🍀 Para aplicar estas configurações é necessário reiniciar as distribuições Linux. Execute o comando: `wsl --shutdown` (Este comando vai desligar todas as instâncias WSL 2 ativas, basta abrir o terminal novamente para usá-las já com as novas configurações).
 
 Este arquivo `.wslconfig` é um arquivo de configuração global, ou seja, ele afetará todas as distribuições Linux que você tiver instalado no WSL 2, porque você pode ter mais de uma distribuição Linux instalada no WSL 2, como um Ubuntu, um Debian, um Fedora, etc.
 
-### 2. Systemd
+### 2. Aplicar recuperação automática de memória no WSL 2
+
+Com o passar do tempo, o WSL pode consumir memória RAM e não liberar, é feito cache de memória para melhorar o desempenho, mas podemos liberar esta memória depois de um tempo. Esta opção é chamada de `autoMemoryReclaim`, ela libera a memória RAM que não está sendo usada através de uma das 2 opções:
+
+* gradual: Libera a memória RAM de forma gradual a cada 5 minutos.
+* dropcache: Libera a memória RAM de forma imediata.
+
+Para ativar o `autoMemoryReclaim` manualmente, edite o arquivo `.wslconfig` presente na pasta de usuário do Windows (`%USERPROFILE%`):
+
+```conf
+[experimental]
+autoMemoryReclaim=gradual
+```
+
+> O `.wslconfig` não existirá caso ainda não tenha alterado a configuração padrão do WSL antes, se for o caso, crie um arquivo no Bloco de Notas e salve como `.wslconfig`.
+
+Esta opção só funcionará após reiniciar o WSL. Pare o WSL rodando o comando `wsl --shutdown`. Se o Docker Desktop estiver ativo, imediatamente notará que WSL caiu, apenas clique em "Reiniciar" para subir uma nova instância do WSL.
+
+### 3. Systemd
 
 O WSL é compatível com o `systemd`. O `systemd` é um sistema de inicialização e gestão de serviços amplamente utilizado em distribuições Linux modernas. Ela permitirá que você use ferramentas mais complexas no Linux como snapd, LXD, etc.
 
 Não é obrigatório ativá-lo e a qualquer momento ele pode ser desativado e reativado. Mas, recomendamos que o mantenha ativado, porque ele melhorará a compatibilidade com as distribuições Linux, permitindo que você use mais ferramentas e serviços, como Kubernetes, etc (Ele não é necessário para rodar o Docker).
 
 Para ativá-lo, edite o arquivo `/etc/wsl.conf`:
-
-Rode o comando para editar:
 
 ```conf
 sudo vim /etc/wsl.conf
@@ -121,7 +163,7 @@ Quando terminar a edição, pressione `Esc`, em seguida tecle `:` para entrar co
 
 Toda vez que esta mudança for realizada é necessário reiniciar o WSL com o comando `wsl --shutdown` no DOS ou PowerShell.
 
-### O que é WSLg
+### 4. O que é WSLg
 
 O WSLg é uma extensão do WSL 2 que permite rodar aplicações gráficas do Linux no Windows. Ele é uma extensão do WSL 2 e não é necessário instalar nada adicional, basta ter o WSL 2 instalado e atualizado.
 
@@ -213,6 +255,41 @@ Precisamos priorizar o `P9NP` acima do `cbfs6` (ou `cbfsconnect2017`).
 
 > O Plan 9 network provider (P9NP) é  um provedor de rede que permite o compartilhamento de arquivos entre WSL (Linux) e Windows de forma integrada.
 > É essencial para comunicação de arquivos entre o Windows e o WSL por caminhos como `\\wsl$\Ubuntu\`.
+
+# Docker
+
+## Vantagens & Desvantagens
+
+O Docker é ideal para desenvolvimento, CI/CD e implantação em escala por ser mais eficiente que VMS, ambientes em nuvem e locais nativos.
+
+Vantagens:
+
+1. **Leveza**: Containers compartilham o kernel do sistema operacional, consumindo menos recurso comparado a uma VM que precisa de um sistema operacional completo.
+2. **Velocidade**: Inicializam em segundos, enquanto VMs e Clouds podem levar minutos.
+3. **Portabilidade**: Os containers funcionam da mesma forma em qualquer ambiente que suporte Docker.
+4. **Gerenciamento Simples**: Menor overhead para criar, destruir ou replicar ambientes.
+5. **Melhor Utilização de Recursos**: Mais containers podem rodar no mesmo host, otimizando ‘hardware’ se comparados com outras opções.
+
+Desvantagens:
+
+1. Desempenho: Containers podem ter overhead em comparação a processos nativos.
+2. Compatibilidade: Nem todos os aplicativos ou serviços suportam execução em containers.
+3. Segurança: Não indicado para ambiente production. Menos isolamento que VMs, pois compartilham o kernel do host.
+4. Curva de aprendizado: Configurar e gerenciar containers pode ser complexo para iniciantes.
+
+## Dicas & Truques
+
+### Otimizar recursos do Docker Desktop
+
+Existe um recurso no Docker Desktop chamado **Resource Save Mode** que otimiza o uso de recursos da máquina. Ele diminui o uso de memória RAM e CPU quando o Docker Desktop não está sendo usado.
+
+De tempos em tempos, o Docker Desktop vai analisar se há containers rodando e se não houver, ele vai diminuir o uso de recursos da máquina.
+
+Ative-o, clicando no ícone de engrenagem no canto superior direito, vá em `Resources` &rarr; `Advanced` e habilite a opção `Resource Save Mode`, conforme a imagem abaixo:
+
+![Ativar Resource Save Mode no Docker Desktop](assets/img/resource-saver.png)
+
+Você pode escolher de quanto em quanto tempo o Docker Desktop vai analisar se há containers rodando e diminuir o uso de recursos da máquina. O padrão é 5 min.
 
 # ZSH
 
