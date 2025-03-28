@@ -244,12 +244,21 @@ autoMemoryReclaim=gradual
 
 Esta opção só funcionará após reiniciar o WSL. Pare o WSL rodando o comando `wsl --shutdown`. Se o Docker Desktop estiver ativo, imediatamente notará que WSL caiu, apenas clique em "Reiniciar" para subir uma nova instância do WSL.
 
-<span style="color:#ffffff;background-color:#3d444c;width:100%;display:block;padding:.8rem 1rem">
+<span style="color:#ffffff;background-color:saddlebrown;width:100%;display:block;padding:.8rem 1rem">
 ⚠️ A partir deste ponto, execute todos os comandos a partir daqui no terminal do <b>Ubuntu</b>.
 Para acessá-lo abrar um nova aba do Terminal do Windows (recomendado) ou digite `wsl` no PowerShell.
 </span>
 
 > Para uma experiência de shell mais moderna e eficiente, recomendamos o uso do **Oh My Zsh**. Consulte o arquivo [Extras.md](Extras.md#oh-my-zsh) para instruções de instalação.
+
+# Ferramentas úteis
+
+Caso você não tenha instalado alguma distribuição Ubuntu diferente do padrão, algumas ferramentas podem estar faltando, instale-as agora:
+
+```bash
+sudo apt update &&
+sudo apt install make curl wget git zip unzip unrar-free tar gzip bzip2 xz-utils p7zip-full p7zip-rar -y
+```
 
 # Git & GitHub
 
@@ -259,7 +268,7 @@ já o **GitHub** é uma plataforma baseada na nuvem que hospeda repositórios Gi
 
 > Resumindo: Git é a ferramenta de controle de versões de código; GitHub é o serviço que facilita o uso do Git em equipe.
 
-A distribuição Ubuntu instalada com WSL 2 já vem com git. Você deve conseguir verificar a versão instalada executando:
+A distribuição Ubuntu padrão do WSL 2 já vem com git. Você deve conseguir verificar a versão instalada executando:
 
 ```bash
 git -v
