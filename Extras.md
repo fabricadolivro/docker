@@ -65,6 +65,8 @@
 O WSL 2 vem com uma aplicação chamada **Configurações do WSL** que permite configurar o WSL 2 de forma mais fácil e rápida.
 Para acessar esta aplicação, basta digitar `wsl` no menu iniciar e clicar em `Configurações do WSL` (*WSL Settings*).
 
+> Caso não esteja familiarizado com o WSL, é altamente recomentado visitar a seção "Bem-vindo ao WSL" no rodapé do menu lateral esquerdo da aplicação.
+
 ![Wsl Settings](assets/img/wsl-settings.png)
 
 Alguns recursos úteis que podem ser configurados são:
@@ -182,6 +184,35 @@ No PhpStorm, você pode abrir diretamente um projeto armazenado no sistema de ar
 > Se o Git não estiver instalado no Windows, o PhpStorm procura pelo Git no WSL e o usa de lá. Além disso, o PhpStorm alterna automaticamente do WSL para o Git para projetos que são abertos quando você usa o caminho **\\\wsl$**.
 >
 > Para mais informações sobre como trabalhar com Git no PhpStorm, consulte <a href="https://www.jetbrains.com/help/phpstorm/using-git-integration.html" target="_blank">Git</a>.
+
+### Acessando WSL.localhost
+
+O **Explorer do Windows** tem uma integração com o WSL 2 que permite acessar facilmente os arquivos do Linux diretamente do Windows. Para acessar, basta digitar `\\wsl$` na barra de endereços do Explorer.
+
+#### Erro ao acessar a árvore do Linux via Windows Explorer
+
+![WSL.localhost Error](assets/img/WSL.localhost-error.png)
+
+Se aparecer a janela de erro acima ao tentar abrir a arvore Linux no Windows Explorer, 
+será preciso ajustar a ordem dos provedores de rede no **Registro do Windows (Registry Editor)**.
+
+> **Atenção**: Antes de fazer qualquer alteração no registro do Windows, é altamente recomendado criar um ponto de restauração do sistema.
+
+Precisamos priorizar o `P9NP` acima do `cbfs6` (ou `cbfsconnect2017`).
+
+1. Pressione `Win + R`, digite `regedit` e pressione **Enter**. 
+2. Navegue até a chave `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\NetworkProvider\Order`.
+3. Clique duas vezes na entrada `ProviderOrder` e você verá uma lista separada por vírgulas. 
+4. Mova `P9NP` para o início. Exemplo: `P9NP,RDPNP,LanmanWorkstation,WebClient`.
+5. Agora, navegue até `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\NetworkProvider\ProviderOrder`.
+6. Por padrão, o `P9NP` tem um valor decimal de `500`. Precisamos defini-lo como `250` e, portanto, alterar o `cbfs*` para `500`.
+
+![Provider Order](assets/img/provider-order.png)
+
+7. Feche o editor e reinicie o computador.
+
+> O Plan 9 network provider (P9NP) é  um provedor de rede que permite o compartilhamento de arquivos entre WSL (Linux) e Windows de forma integrada.
+> É essencial para comunicação de arquivos entre o Windows e o WSL por caminhos como `\\wsl$\Ubuntu\`.
 
 # ZSH
 

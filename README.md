@@ -115,7 +115,7 @@ Com êxito na operação, pode ser necessário reiniciar o sistema para que as a
 
 > Para abrir uma nova janela do Ubuntu, basta digitar `Ubuntu` no menu Iniciar e clicar no ícone do Ubuntu.
 
-Parabêns, o seu WSL 2 já está a funcionar!
+Parabêns, o seu WSL 2 já está funcionando!
 
 ![WSL2 working!](assets/img/wsl2-working.png)
 
@@ -131,8 +131,17 @@ após a instalação, clique em "Abrir" para acessar o terminal e criar a conta 
 
 ### Conhecendo e Configurando o WSL
 
-Nesse ponto, o WSL 2 está instalado com uma distribuição Ubuntu instalada, teste no terminal ```wsl -l -v```. 
-Para mais detalhes leia [Configurações do WSL](Extras.md#configurações-do-wsl) nos **Extras**.
+Nesse ponto, o WSL 2 está instalado com uma distribuição Ubuntu instalada, teste no terminal `wsl -l -v`.
+
+> Para mais detalhes leia [Configurações do WSL](Extras.md#configurações-do-wsl) nos **Extras**.
+
+### WSL 2 no Windows Explorer
+
+Depois de instalar o WSL 2 e instalar algumas VMs Linux, as árvores de arquivos das VMs estarão disponíveis no Windows em `\\wsl$` e o Windows Explorer começa a exibir uma árvore Linux:
+
+![Lunix tree](assets/img/Linux-tree.png)
+
+> Caso não esteja acessível à árvore Linux, verifique [Acessando WSL.localhost](Extras.md#acessando-wsllocalhost) nos **Extras**.
 
 ### Integrar WSL com IDEs (Opcional)
 
