@@ -11,11 +11,15 @@
     <strong>WSL</strong>
   </summary>
 
+- [Configurações do WSL](#configurações-do-wsl)
 - [Limitar recursos usados pelo WSL 2](#limitar-recursos-usados-pelo-wsl-2)
 - [Systemd](#systemd)
 - [O que é WSLg](#o-que-é-wslg)
   - [Arquitetura do WSLg](#arquitetura-do-wslg)
   - [Como ativar o WSLg](#como-ativar-o-wslg)
+- [Integrações](#integrações)
+  - [Integração com VSCode](#integração-com-vscode) 
+  - [Integração com PhpStorm](#integração-com-phpstorm) 
 </details>
 
 <details>
@@ -56,7 +60,16 @@
 
 # WSL
 
-## Limitar recursos usados pelo WSL 2
+## Configurações do WSL
+
+O WSL 2 vem com uma aplicação chamada **Configurações do WSL** que permite configurar o WSL 2 de forma mais fácil e rápida.
+Para acessar esta aplicação, basta digitar `wsl` no menu iniciar e clicar em `Configurações do WSL` (*WSL Settings*).
+
+![Wsl Settings](assets/img/wsl-settings.png)
+
+Alguns recursos úteis que podem ser configurados são:
+
+### 1. Limitar recursos usados pelo WSL 2
 
 Podemos dizer que o WSL 2 tem acesso quase que total ao recurso da sua máquina. Ele tem acesso por padrão:
 
@@ -65,7 +78,7 @@ Podemos dizer que o WSL 2 tem acesso quase que total ao recurso da sua máquina.
 * A usar 50% da memória RAM disponível.
 * A usar 25% da memória disponível para SWAP (memória virtual).
 
-Se você quiser personalizar estes limites, crie um arquivo chamado `.wslconfig` na raiz da sua pasta de usuário `(C:\Users\<seu_usuario>)` e defina estas configurações:
+Se você quiser personalizar estes limites manualmente, crie um arquivo chamado `.wslconfig` na raiz da sua pasta de usuário `(C:\Users\<seu_usuario>)` e defina estas configurações:
 
 ```conf
 [wsl2]
@@ -81,7 +94,7 @@ Para mais detalhes veja esta documentação da Microsoft: <a href="https://learn
 
 Este arquivo `.wslconfig` é um arquivo de configuração global, ou seja, ele afetará todas as distribuições Linux que você tiver instalado no WSL 2, porque você pode ter mais de uma distribuição Linux instalada no WSL 2, como um Ubuntu, um Debian, um Fedora, etc.
 
-## Systemd
+### 2. Systemd
 
 O WSL é compatível com o `systemd`. O `systemd` é um sistema de inicialização e gestão de serviços amplamente utilizado em distribuições Linux modernas. Ela permitirá que você use ferramentas mais complexas no Linux como snapd, LXD, etc.
 
@@ -106,13 +119,13 @@ Quando terminar a edição, pressione `Esc`, em seguida tecle `:` para entrar co
 
 Toda vez que esta mudança for realizada é necessário reiniciar o WSL com o comando `wsl --shutdown` no DOS ou PowerShell.
 
-## O que é WSLg
+### O que é WSLg
 
 O WSLg é uma extensão do WSL 2 que permite rodar aplicações gráficas do Linux no Windows. Ele é uma extensão do WSL 2 e não é necessário instalar nada adicional, basta ter o WSL 2 instalado e atualizado.
 
 Com ele é possível rodar aplicações como Chrome, Firefox, Gedit, IDEs (VSCode, JetBrains) e até aplicações gráficas feitas em Java, Python e etc.
 
-### Arquitetura do WSLg
+#### Arquitetura do WSLg
 
 O WSLg é uma extensão do WSL 2 que permite rodar aplicações gráficas do Linux no Windows. Ele é uma extensão do WSL 2 e não é necessário instalar nada adicional, basta ter o WSL 2 instalado e atualizado.
 
@@ -120,7 +133,7 @@ Com ele é possível rodar aplicações como Chrome, Firefox, Gedit, IDEs (VSCod
 
 ![Arquitetura do WSLg](assets/img/WSLg_ArchitectureOverview.png)
 
-### Como ativar o WSLg
+#### Como ativar o WSLg
 
 Para ativar o WSLg, basta ter o WSL 2 instalado e atualizado. Não é necessário instalar nada adicional.
 
@@ -135,6 +148,40 @@ sudo apt-get install gedit
 Abra o Gedit no terminal do WSL 2 digitando `gedit` e ele será aberto no Windows.
 
 Portanto, basta instalar o aplicativo e lança-lo no terminal do WSL 2 para que ele seja aberto no Windows.
+
+## Integrações
+
+### Integração com VSCode
+
+O Visual Studio Code tem uma extensão chamada **WSL** que permite acessar o WSL 2 diretamente do VSCode. Com esta extensão, você pode editar os seus arquivos diretamente no WSL 2, rodar comandos, instalar extensões e muito mais.
+
+Veja mais sobre esta extensão em <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" target="_blank">WSL</a>.
+
+Ao abrir um projeto que está dentro do Linux, é importante que o modo WSL do VSCode esteja ativado. No canto inferior esquerdo do VSCode, clique no botão `><` e selecione `Connect to WSL`. Isto irá conectar o VSCode ao WSL 2 e então poderá abrir o projeto que está dentro do Linux. Você verá que o botão `><` mudará para `WSL: Ubuntu`.
+
+![Conectar ao WSL 2 no VSCode](assets/img/vscode-remote-wsl.png)
+
+Se o VSCode não estiver desta forma ao abrir projetos dentro do Linux, então o modo WSL não estará ativado e você perderá desempenho ao editar arquivos dentro do Linux, além de não ter suporte para algumas extensões.
+
+> Com a extensão também será possível abrir o projeto no modo WSL diretamente pelo terminal.
+> Acesse a pasta do projeto no terminal do WSL e digite `code .`. Isto abrirá o VSCode no modo WSL.
+>
+> Para que o atalho funcione, você deve iniciar uma nova seção do terminal do WSL após instalação da extensão.
+
+### Integração com PhpStorm
+
+No PhpStorm, você pode abrir diretamente um projeto armazenado no sistema de arquivos WSL e trabalhar com ele como em qualquer outro projeto.
+
+1. Clique em **Abrir** (*Open*) na tela de boas-vindas ou selecione **Arquivo | Abrir** (*File | Open*) no menu principal.
+2. Na caixa de diálogo Selecionar caminho que é aberta, selecione a pasta no sistema de arquivos WSL que contém o projeto a ser aberto ou digite o caminho para o local do projeto **\\\wsl$** manualmente.
+   <img src="assets/img/ps_wsl-open-project-wsl.png" width="425" alt="Abrir projeto WSL">
+   <img src="assets/img/ws_open_project_wsl_dark.png" width="652" alt="Abrir projeto WSL">
+
+> O PhpStorm oferece suporte ao Git do *Windows Subsystem for Linux 2* (WSL2), que está disponível no Windows 10 versão 2004 .
+>
+> Se o Git não estiver instalado no Windows, o PhpStorm procura pelo Git no WSL e o usa de lá. Além disso, o PhpStorm alterna automaticamente do WSL para o Git para projetos que são abertos quando você usa o caminho **\\\wsl$**.
+>
+> Para mais informações sobre como trabalhar com Git no PhpStorm, consulte <a href="https://www.jetbrains.com/help/phpstorm/using-git-integration.html" target="_blank">Git</a>.
 
 # ZSH
 

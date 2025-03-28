@@ -15,7 +15,8 @@
     - [Windows Update](#windows-update)
     - [Terminal do Windows](#terminal-do-windows)
     - [Instale o Ubuntu](#instale-o-ubuntu)
-    - [Integração com VSCode (opcional)](#integração-com-vscode-opcional)
+    - [Conhecendo e Configurando o WSL](#conhecendo-e-configurando-o-wsl)
+    - [Integrações com IDEs (optional)](#integrações-com-ides-opcional)
 </details>
 
 <details open>
@@ -128,21 +129,15 @@ após a instalação, clique em "Abrir" para acessar o terminal e criar a conta 
 
 ![Crie conta de usuário UNIX padrão](assets/img/create-default-unix-user-account.png)
 
-### Integração com VSCode
+### Conhecendo e Configurando o WSL
 
-O Visual Studio Code tem uma extensão chamada **WSL** que permite acessar o WSL 2 diretamente do VSCode. Com esta extensão, você pode editar os seus arquivos diretamente no WSL 2, rodar comandos, instalar extensões e muito mais.
+Nesse ponto, o WSL 2 está instalado com uma distribuição Ubuntu instalada, teste no terminal ```wsl -l -v```. 
+Para mais detalhes leia [Configurações do WSL](Extras.md#configurações-do-wsl) nos **Extras**.
 
-Veja mais sobre esta extensão em <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" target="_blank">WSL</a>.
+### Integrar WSL com IDEs (Opcional)
 
-Ao abrir um projeto que está dentro do Linux, é importante que o modo WSL do VSCode esteja ativado. No canto inferior esquerdo do VSCode, clique no botão `><` e selecione `Connect to WSL`. Isto irá conectar o VSCode ao WSL 2 e então poderá abrir o projeto que está dentro do Linux. Você verá que o botão `><` mudará para `WSL: Ubuntu`.
-
-![Conectar ao WSL 2 no VSCode](assets/img/vscode-remote-wsl.png)
-
-Se o VSCode não estiver desta forma ao abrir projetos dentro do Linux, então o modo WSL não estará ativado e você perderá desempenho ao editar arquivos dentro do Linux, além de não ter suporte para algumas extensões.
-
-> Com a extensão também será possível abrir o projeto no modo WSL diretamente pelo terminal. 
-> Acesse a pasta do projeto no terminal do WSL e digite `code .`. Isto abrirá o VSCode no modo WSL. 
-> Para que o atalho funcione, você deve iniciar uma nova seção do terminal do WSL após instalação da extensão. 
+- [Integração com o Visual Studio Code (VSCode)](Extras.md#integração-com-vscode)
+- [Integração com o PhpStorm (PS)](Extras.md#integração-com-phpstorm)
 
 # Docker 
 
