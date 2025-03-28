@@ -422,6 +422,7 @@ cp .env.example .env
 Edite o arquivo ```hosts``` presente na pasta de configurações de rede no Windows (por padrão ```C:\Windows\System32\drivers\etc```) e adicione no final do arquivo as linhas a seguir:
 
 ```text
+# Fabrico do Livro
 127.0.0.1 admin-backend.fabricadolivro.lab
 127.0.0.1 admin-frontend.fabricadolivro.lab
 127.0.0.1 administrative.fabricadolivro.lab
@@ -430,18 +431,30 @@ Edite o arquivo ```hosts``` presente na pasta de configurações de rede no Wind
 127.0.0.1 editor-backend-api.fabricadolivro.lab
 127.0.0.1 editor-frontend.fabricadolivro.lab
 ```
+
+### Make
+
+O Make é uma ferramenta de automação de tarefas que permite a execução de comandos de forma mais simples e rápida. Ele é muito útil para automatizar tarefas repetitivas e complexas.
+Instale o Make no Ubuntu caso não tenha:
+
+```shell
+sudo apt install make
+```
+
 ## Docker 
+
+Para utilizar os comandos Docker/Make a seguir no terminal do Linux, é necessário ter o **Docker Desktop** instalado e rodando no Windows.
 
 ### Construindo as imagens Docker
 
-Estando dentro do projeto **docker** (```~/fabricadolivro/docker```), execute:
+No terminal, navegue até o projeto `docker` (```~/fabricadolivro/docker```), execute:
 
 ```shell
-#docker compose -f docker-compose.yml build
 make build
+# ou docker compose -f docker-compose.yml build
 ```
 
-> Na primeira vez, esse processo pode levar alguns minutos a depender da velocidade de conexço.
+> Na primeira vez, esse processo pode levar alguns minutos a depender da velocidade de conexão.
 
 Ao termino do processo, o docker terá baixado as imagens Docker genêricas
 (node, php 7.2, php8.4, mysql 8.0, redis...) e processado as instruções para
