@@ -245,7 +245,7 @@ autoMemoryReclaim=gradual
 Esta opção só funcionará após reiniciar o WSL. Pare o WSL rodando o comando `wsl --shutdown`. Se o Docker Desktop estiver ativo, imediatamente notará que WSL caiu, apenas clique em "Reiniciar" para subir uma nova instância do WSL.
 
 <span style="color:#ffffff;background-color:#3d444c;width:100%;display:block;padding:.8rem 1rem">
-A partir deste ponto, execute todos os comandos a partir daqui no terminal do <b>Ubuntu</b>.
+:warning: A partir deste ponto, execute todos os comandos a partir daqui no terminal do <b>Ubuntu</b>.
 Para acessá-lo abrar um nova aba do Terminal do Windows (recomendado) ou digite `wsl` no PowerShell.
 </span>
 
@@ -381,9 +381,9 @@ Hi <username>! You've successfully authenticated, but GitHub does not provide sh
 
 # Ambiente de Desenvolvimento
 
-## repositórios e Hosts
+## Repositórios e Hosts
 
-### Clonando os repositórios
+### Clonando os Repositórios
 
 Dentro do diretório home do usuário atual crie a pasta raiz dos repositórios. Executando:
 
@@ -432,7 +432,7 @@ Edite o arquivo ```hosts``` presente na pasta de configurações de rede no Wind
 127.0.0.1 editor-frontend.fabricadolivro.lab
 ```
 
-### Make
+## Make
 
 O Make é uma ferramenta de automação de tarefas que permite a execução de comandos de forma mais simples e rápida. Ele é muito útil para automatizar tarefas repetitivas e complexas.
 Instale o Make no Ubuntu caso não tenha:
@@ -441,7 +441,7 @@ Instale o Make no Ubuntu caso não tenha:
 sudo apt install make
 ```
 
-## Docker 
+## Build 
 
 Para utilizar os comandos Docker/Make a seguir no terminal do Linux, é necessário ter o **Docker Desktop** instalado e rodando no Windows.
 
