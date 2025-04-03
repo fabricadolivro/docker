@@ -275,12 +275,12 @@ sudo apt install make curl wget git zip unzip vim unrar-free tar gzip bzip2 xz-u
 **Git** é um sistema de controle de versão distribuído que permite rastrear alterações no código, colaborar com outros 
 desenvolvedores e reverter mudanças, garantindo histórico e organização no desenvolvimento de software.
 
-já o **GitHub** é uma plataforma baseada na nuvem que hospeda repositórios Git, adicionando ferramentas para 
+Já o **GitHub** é uma plataforma baseada na nuvem que hospeda repositórios **Git**, adicionando ferramentas para 
 colaboração, gestão de projetos, revisão de código e integração com outros serviços.
 
 > Git é a ferramenta de controle de versões de código; GitHub é o serviço que facilita o uso do Git em equipe.
 
-A distribuição Ubuntu padrão do WSL 2 já vem com git. Você deve conseguir verificar a versão instalada executando:
+A distribuição Ubuntu padrão do WSL 2 já vem com git. Verifique a versão instalada executando:
 
 ```bash
 git -v
@@ -288,7 +288,7 @@ git -v
 
 ### Conta no GitHub
 
-Se você ainda não possui uma conta pessoal no GitHub, interrompa a leitura deste guia e crie a sua conta no 
+Se você ainda não possui uma conta no GitHub, interrompa a leitura deste guia e crie a sua conta no 
 <a href="https://github.com/" target="_blank">site oficial do GitHub ↗️</a>.
 
 ### Configuração global
@@ -300,7 +300,7 @@ git config --global user.name "Seu Nome ou username"
 git config --global user.email "seuemaildogithub@exemplo.com"
 ```
 
-> Utilize o seu `username` e `email` do GitHub como seu `name` e `email` globais.
+> Um boa prática é utilize o seu `username` e `email` do GitHub como seu `name` e `email` globais.
 
 Para verificar se os valores foram definidos corretamente:
 
@@ -341,9 +341,9 @@ Quando for solicitado a inserir um arquivo para salvar a chave, pressione `Enter
 > Enter a file in which to save the key (/home/YOU/.ssh/id_ALGORITHM):[Press enter]
 ```
 
-> 🍀 Observe que, se você criou chaves SSH anteriormente, ssh-keygen pode pedir que você reescreva outra chave. Nesse 
-> caso, recomendamos criar uma chave SSH personalizada. Para fazer isso, digite o local do arquivo padrão e substitua 
-> id_ALGORITHM pelo nome da chave personalizada.
+> *Observe que, se você criou chaves SSH anteriormente, ssh-keygen pode pedir que você reescreva outra chave. Nesse 
+> caso, crie uma chave SSH personalizada (opcional). Para fazer isso, digite o local do arquivo padrão e substitua 
+> id_ALGORITHM pelo nome da chave personalizada.*
 
 Em seguida, digite (e confirme) uma frase secreta segura. Para saber mais, confira
 <a href="https://docs.github.com/pt/enterprise-server@3.10/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases" target="_blank">
@@ -378,7 +378,12 @@ clip.exe < ~/.ssh/id_rsa.pub
 # Copia o conteúdo do arquivo id_rsa.pub para o clipboard
 ```
 
-> 🍀 Em versões mais recentes do Windows que usam o Windows Terminal ou em qualquer outro lugar que use a linha de comando do PowerShell, você poderá receber um ParseError indicando que The '&lt;' operator is reserved for future use.. Nesse caso, o seguinte comando alternativo clip deve ser usado: `cat ~/.ssh/id_ed25519.pub | clip`
+> *Em versões mais recentes do Windows que usam o Windows Terminal ou em qualquer outro lugar que use a linha de comando 
+> do PowerShell, você poderá receber um ParseError indicando que `The '<' operator is reserved for future use.`. Nesse
+> caso, o seguinte comando alternativo clip deve ser usado:* 
+> ```bash
+> cat ~/.ssh/id_ed25519.pub | clip
+> ```
 
 #### 3.2. Adicione a chave copiada o GitHub.
 
@@ -390,7 +395,7 @@ clip.exe < ~/.ssh/id_rsa.pub
 - No campo "Chave" (`Key`), cole sua chave pública.
 - Clique em **Adicionar chave SSH** (`Add SSH Key`).
 
-> 🍀 Se solicitado, faça a autenticação de dois fatores (2FA) para finalizar a adição.
+> *Se solicitado, faça a autenticação de dois fatores (2FA) para finalizar a adição.*
 
 #### 3.3. Teste a chave SSH configurada no GitHub
 
@@ -400,8 +405,10 @@ Tentar autenticar sua chave SSH com o servidor do GitHub executando o comando:
 ssh -T git@github.com
 ```
 
-> 🍀 Se for a primeira vez que você está se conectando a esse servidor, a chave pública dele não está armazenada no arquivo `~/.ssh/known_hosts` do seu sistema.
-> Digite `yes` para continuar. Isso adicionará a chave do GitHub as redes conhecidas e não será perguntado novamente. 
+> [!TIP]
+> Se for a primeira vez que você está se conectando a esse servidor, a chave pública dele não está armazenada no arquivo
+> `~/.ssh/known_hosts` do seu sistema. Digite `yes` para continuar. Isso adicionará a chave do GitHub as redes
+> conhecidas e não será perguntado novamente. 
 
 Se a configuração estiver correta, você verá uma mensagem como:
 
@@ -409,7 +416,8 @@ Se a configuração estiver correta, você verá uma mensagem como:
 Hi <username>! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
-> 🍀 A chave secreta poderá não persistir no `ssh-agent` ao reiniciar o sistema/terminal, exigindo digitar a senha
+> [!TIP]
+> A chave secreta poderá não persistir no `ssh-agent` ao reiniciar o sistema/terminal, exigindo digitar a senha
 > novamente toda vez que for utilizar um comando `git pull` ou `git push`. Para evitar isso, você pode adicione ao final
 > do seu `~/.bashrc` ou `~/.zshrc`:
 >
