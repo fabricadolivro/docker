@@ -437,7 +437,7 @@ Isso é especialmente útil para desenvolvedores que trabalham com aplicações 
 
 ### Instalação do NVM
 
-> É recomendado desinstalar qualquer versão do Node.js presente na sua máquina antes de instalar o NVM para evitar colisões.
+> 🍀 É recomendado desinstalar qualquer versão do Node.js presente na sua máquina antes de instalar o NVM para evitar colisões.
 
 Para instalar o NVM basta usar o curl ou Wget. Execute no terminal:
 
@@ -449,7 +449,28 @@ $ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | ba
 
 Isso vai executar um script que vai clonar o repositório do NVM e jogar num diretório chamado `~/.nvm`, que é onde serão instaladas as várias versões do Node.js que quisermos.
 
-> Após instalar, pode ser necessário reiniciar o seu terminal.
+> 🍀 Após instalar, pode ser necessário reiniciar o seu terminal.
+
+Depois da instalação, você precisa garantir que o `nvm` seja carregado automaticamente ao iniciar uma nova sessão. 
+
+Adicione as linhas abaixo ao final do seu arquivo `~/.bashrc` ou `~/.zshrc`, dependendo do shell que você usa:
+
+```bash
+# loading NVM
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+```
+Após editar, aplique as mudanças com 
+
+```bash
+source ~/.bashrc
+```
+ou 
+```bash
+source ~/.zshrc
+```
+
 
 ### Comandos Básicos
 
@@ -471,6 +492,12 @@ Para ver que versões estão instaladas na sua máquina:
 | ```nvm alias default vX.X.X```  | Definir uma versão padrão                  |
 | ```nvm alias default node```  | Definir versão mais recente como padrão    |
 | ```nvm  current```  | Indicação da versão atual                  |
+
+Com o `nvm` carregado, o comando abaixo instalará a versão mais recente do **Node.js** e o **npm** correspondete:
+
+```bash
+nvm install node
+```
 
 ### Migração de pacotes globais
 

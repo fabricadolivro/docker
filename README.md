@@ -406,6 +406,19 @@ Se a configuração estiver correta, você verá uma mensagem como:
 Hi <username>! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
+> 🍀 A chave secreta poderá não persistir no `ssh-agent` ao reiniciar o sistema/terminal, exigindo digitar a senha
+> novamente toda vez que for utilizar um comando `git pull` ou `git push`. Para evitar isso, você pode adicione ao final
+> do seu `~/.bashrc` ou `~/.zshrc`:
+>
+> ```bash
+> eval "$(ssh-agent -s)"
+> ssh-add ~/.ssh/id_rsa > /dev/null 2>&1
+> ```
+> 
+> Salve e execute o comando `source ~/.bashrc` ou `source ~/.zshrc` para aplicar as alterações. Cada vez que você
+> reinicializar, você terá que digitar sua frase-senha. Mas você só precisa fazer isso uma vez até reiniciar ou encerrar
+> o WSL.
+
 # Ambiente de Desenvolvimento
 
 ## Clonando os repositórios
@@ -460,11 +473,11 @@ Insira suas  credencias de banco de dados (Development e Production) no arquivo 
 
 ## Containers 
 
-Estaremos utilizando comandos com o Make para gerenciar os containers Docker. 
+Utilizaremos o Make para orquestrar e gerenciar os containers Docker por meio de comandos específicos.
 
 > O Make é uma ferramenta de automação de tarefas que permite a execução de comandos de forma mais simples e rápida. Ele
 > é muito útil para automatizar tarefas repetitivas e complexas. 
-
+  
 > 🍀 Esses comandos executam instruções Docker e ações de montagem e desmontagem que estão definidos no arquivo 
 > `Makefile` deste projeto. Por isso, é importante que você tenha o Docker Desktop instalado e rodando no Windows.
 
