@@ -64,7 +64,6 @@ nativamente no Windows, utilizando uma arquitetura baseada em um kernel completo
 
 > [!NOTE]
 > Com WSL 2 é possível executar Docker e outras ferramentas que dependem do Kernel do Linux usando o Windows 10/11.
-
 > Veja [Requisitos mínimos do WSL 2](Extras.md#requisitos-mínimos-do-wsl-2) nos Extras.
 
 ### Terminal do Windows
