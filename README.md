@@ -198,7 +198,7 @@ Há ao menos 4 modos de usar o Docker no Windows:
 
 ### 1. Baixe o instalador
 
-Baixe neste link: <a href="https://www.docker.com/products/docker-desktop/" target="_blank">https://www.docker.com/products/docker-desktop/ ↗️</a> e instale o Docker Desktop.
+Baixe neste link: <a href="https://www.docker.com/products/docker-desktop/" target="_blank">https://www.docker.com/products/docker-desktop/ ↗️</a>.
 
 ### 2. Instalação
 
@@ -268,7 +268,7 @@ sudo apt install make curl wget git zip unzip vim unrar-free tar gzip bzip2 xz-u
 ```
 
 > *Para uma experiência de shell mais moderna e eficiente, use o *framework* **Oh My Zsh**. 
-> Veja nos [Extras](Extras.md#oh-my-zsh) como instalar e configurar o seu shell.
+> Veja nos [Extras](Extras.md#oh-my-zsh) como instalar e configurar o seu shell (Opcional).*
 
 # Git & GitHub
 
