@@ -39,48 +39,34 @@
 
 </strong>
   </summary>
-
+  
 - [Limitar recursos usados pelo WSL 2](#limitar-recursos-usados-pelo-wsl-2)
 - [Systemd](#systemd)
 - [O que é WSLg](#o-que-é-wslg)
 </details>
 
-## Legendas
-
-Este é um texto simples.
-
-<span style="color:#ffffff;background-color:saddlebrown;width:100%;display:block;padding:.8rem 1rem">
-⚠️ Passo ou recomendação importante.
-</span>
-
-> 🍀 Solução rápida para um problema comum.
-
-> Aprofundamento técnico ou sugestão.
+# WSL 2
 
 ## O que é WSL 2
 
 O WSL 2 ou ***Windows Subsystem for Linux***, é uma camada de compatibilidade que permite executar distribuições Linux
-nativamente no Windows, utilizando uma arquitetura baseada em um kernel completo Linux completo integrado ao sistema. 
+nativamente no Windows, utilizando uma arquitetura baseada em um kernel completo Linux completo integrado ao sistema.\
 
-> [!NOTE]
-> Com WSL 2 é possível executar Docker e outras ferramentas que dependem do Kernel do Linux usando o Windows 10/11.
-> Veja [Requisitos mínimos do WSL 2](Extras.md#requisitos-mínimos-do-wsl-2) nos Extras.
+Veja [Requisitos mínimos do WSL 2](Extras.md#requisitos-mínimos-do-wsl-2) nos Extras.
 
 ### Terminal do Windows
 
-Use o Windows Terminal para desenvolver no Windows e também para acessar o WSL 2. Instale-o pelo **Windows Store**.
+Use o **Windows Terminal** para desenvolver no Windows e também para acessar o WSL 2. Instale-o pelo **Windows Store**.
 
 > [!IMPORTANT]
-> ️ Esta documentação faz o uso do 
-> <a href="https://docs.microsoft.com/pt-br/windows/terminal/get-started/" target="_blank">Windows Terminal</a> como 
+> ️ Esta documentação faz o uso do
+> <a href="https://docs.microsoft.com/pt-br/windows/terminal/get-started/" target="_blank">Windows Terminal</a> como
 > terminal padrão para desenvolvimento no Windows.
 
-> [!TIP]
-> A experiência é muito melhor que o terminal padrão do Windows. Por padrão, o Windows Terminal identificará e agregará 
-> o shell do Ubuntu (que iremos instalar a seguir) e os principais shells instalados no Windows, como PowerShell, CMD e 
-> WSL numa única janela, além de permitir personalização de cores, temas, atalhos e muito mais.\
-> Veja mais opções de configuração dele em 
-> <a href="https://docs.microsoft.com/pt-br/windows/terminal/get-started/" target="_blank">Mais sobre o Windows Terminal ↗️</a>.
+Por padrão, o Windows Terminal identificará e agregará o shell do Ubuntu (que iremos instalar a seguir) e os
+principais shells instalados no Windows, como PowerShell, CMD e WSL numa única janela, além de permitir personalização
+de cores, temas, atalhos e muito mais. Veja 
+<a href="https://docs.microsoft.com/pt-br/windows/terminal/get-started/" target="_blank">Mais sobre o Windows Terminal ↗️</a>.
 
 ## Instalação do WSL 2 (Windows 10/11)
 
@@ -94,12 +80,12 @@ presente na sua máquina</span>, execute o comando para ver a versão do WSL:
 wsl --version
 ```
 
-> 🍀 Se o WSL 2 não estiver instalado, será exibida a opção para instalá-lo. Pressione qualquer tecla, aguarde a 
-> conclusão da instalação e reinicie o sistema.
-> 
-> ![Instalação do WSL 2](assets/img/install-WSL.png)
+Se o WSL 2 não estiver instalado, será exibida a opção para instalá-lo. Pressione qualquer tecla, aguarde a 
+conclusão da instalação e reinicie o sistema.
+ 
+![Instalação do WSL 2](assets/img/install-WSL.png)
 
-> 🍀 A versão 2 normalmente é a default, mas a versão 1 do WSL pode estar como default, execute o comando abaixo para 
+> A versão 2 normalmente é a default, mas a versão 1 do WSL pode estar como default, execute o comando abaixo para 
 > definir como default a versão 2:
 >
 > ```bash
@@ -109,48 +95,46 @@ wsl --version
 ## Instale o Ubuntu
 
 Existem duas maneiras de instalar: pelos **comandos do WSL** ou pela **Windows Store**. Independente do meio, 
-recomendamos o Ubuntu (sem versão) por ser uma distribuição popular e que já vem com várias ferramentas úteis para 
-desenvolvimento instaladas por padrão.
+considere instalar o Ubuntu (sem versão) pois essa distribuição já vem com diversas ferramentas úteis para
+desenvolvimento pré-instaladas.
 
 ### Opção 1 - Instalação via comandos
 
-1.1. Execute o comando a seguir para instalar o `Ubuntu` (sem versão) como o Linux padrão:
+#### 1.1. Execute o comando a seguir para instalar o `Ubuntu` (sem versão) como o Linux padrão:
 
 ```bash
 wsl --install
 ```
 
-> Se você quiser instalar uma versão diferente do Ubuntu, execute o comando `wsl -l -o` para listar as distribuições 
-disponíveis. Instale a versão escolhida com o comando `wsl --install -d nome-da-distribuicao`.
+Se você quiser instalar uma versão diferente do Ubuntu, execute o comando `wsl -l -o` para listar as distribuições 
+disponíveis. Instale a versão escolhida com o comando `wsl --install -d [nome-da-distribuicao]`.
 
-> Para instalar a distribuição numa pasta ou dispositivo específico, baixe a
-> distribuição da Microsoft Store, importe a distribuição com o commando 
-> `wsl --import <nome-da-distro> <caminho-da-pasta-de-instalacao> <caminho-do-arquivo-rootfs>` (), 
-> defina a distribuição padrão `wsl --set-default <nome-da-distro>` e abra com `wsl -d <nome-da-distro>`.
+#### 1.2. Você deverá criar um **nome de usuário** e uma **senha**.
 
-1.2. Você deverá criar um **nome de usuário** que poderá ser o mesmo da sua máquina.
-Crie um nome de usuário (sem espaço e caracteres especiais) e uma **senha** (defina uma senha forte). Esta senha será 
-usada para instalar pacotes e realizar operações de superusuário.
+O nome de usuário não pode conter espaços ou caracteres especiais. Você pode usar letras, números e o caractere `-`
+(hífen). A senha deve ser forte, com pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e
+caracteres especiais. Esta senha será usada para instalar pacotes e realizar operações de superusuário.
 
-1.3. Com êxito na operação, pode ser necessário **reiniciar o sistema para que as alterações entrem em vigor**.
+#### 1.3. Com êxito na operação, pode ser necessário **reiniciar o sistema para que as alterações entrem em vigor**.
 
-1.4. Para abrir uma nova janela do Ubuntu, basta digitar `Ubuntu` no menu Iniciar e clicar no ícone do Ubuntu.
+#### 1.4. Para abrir uma nova janela do Ubuntu, basta digitar `Ubuntu` no menu Iniciar e clicar no ícone do Ubuntu.
 
-> 🍀 O Ubuntu não estará imediatamente disponível no Windows Terminal. Inicie uma nova sessão do Terminal.
+> [!NOTE]
+> O Ubuntu não estará imediatamente disponível no Windows Terminal. Inicie uma nova sessão do Terminal.
 
 ![WSL2 working!](assets/img/wsl2-working.png)
 
 ### Opção 2 - Instalação via Windows Store
 
-2.1. Basta acessar o Windows Store e procurar pelo nome da distribuição Linux desejada e clicar em instalar.
+#### 2.1. Basta acessar o Windows Store e procurar pelo nome da distribuição Linux desejada e clicar em instalar.
 
 ![Linux distros](assets/img/linux-distros.png)
 
-2.2. após a instalação, clique em "Abrir" para acessar o terminal e criar a conta de usuário UNIX padrão.
+#### 2.2. após a instalação, clique em "Abrir" para acessar o terminal e criar a conta de usuário UNIX padrão.
 
 ![Crie conta de usuário UNIX padrão](assets/img/create-default-unix-user-account.png)
 
-**Parabêns, o seu WSL 2 já está funcionando!**
+> *Parabêns, o seu WSL 2 já está funcionando!*
 
 ### Conhecendo e Configurando o WSL
 
@@ -160,6 +144,7 @@ Nesse ponto, o WSL 2 está instalado com uma distribuição Ubuntu instalada, te
 wsl -l -v
 ```
 
+> [!TIP]
 > Para mais detalhes leia [Configurações do WSL](Extras.md#configurações-do-wsl) nos **Extras**.
 
 ### WSL 2 no Windows Explorer
@@ -169,10 +154,13 @@ em `\\wsl$` e o Windows Explorer começa a exibir uma árvore Linux:
 
 ![Lunix tree](assets/img/Linux-tree.png)
 
-> 🍀 Caso não esteja acessível à árvore Linux, verifique [Acessando WSL.localhost](Extras.md#acessando-wsllocalhost) nos
+> [!TIP]
+> Caso não esteja acessível à árvore Linux, veja [Acessando WSL.localhost](Extras.md#acessando-wsllocalhost) nos
 > **Extras**.
 
-### Integrar WSL com IDEs (Opcional)
+### Integrar WSL com IDEs (Recomendado)
+
+Verifique nos **Extras** como integrar o WSL 2 com as IDEs:
 
 - [Integração com o Visual Studio Code (VSCode)](Extras.md#integração-com-vscode)
 - [Integração com o PhpStorm (PS)](Extras.md#integração-com-phpstorm)
