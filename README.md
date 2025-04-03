@@ -62,7 +62,9 @@ Este é um texto simples.
 O WSL 2 ou ***Windows Subsystem for Linux***, é uma camada de compatibilidade que permite executar distribuições Linux
 nativamente no Windows, utilizando uma arquitetura baseada em um kernel completo Linux completo integrado ao sistema. 
 
-> 🍀 Com WSL 2 é possível executar Docker e outras ferramentas que dependem do Kernel do Linux usando o Windows 10/11.
+> [!NOTE]
+> Com WSL 2 é possível executar Docker e outras ferramentas que dependem do Kernel do Linux usando o Windows 10/11.
+
 > Veja [Requisitos mínimos do WSL 2](Extras.md#requisitos-mínimos-do-wsl-2) nos Extras.
 
 ### Terminal do Windows
@@ -77,8 +79,7 @@ terminal padrão para desenvolvimento no Windows.
 
 > A experiência é muito melhor que o terminal padrão do Windows. Por padrão, o Windows Terminal identificará e agregará 
 > o shell do Ubuntu (que iremos instalar a seguir) e os principais shells instalados no Windows, como PowerShell, CMD e 
-> WSL numa única janela, além de permitir personalização de cores, temas, atalhos e muito mais.
->
+> WSL numa única janela, além de permitir personalização de cores, temas, atalhos e muito mais.\
 > Veja mais opções de configuração dele em 
 > <a href="https://docs.microsoft.com/pt-br/windows/terminal/get-started/" target="_blank">Mais sobre o Windows Terminal ↗️</a>.
 
