@@ -52,7 +52,7 @@
 O WSL 2 ou ***Windows Subsystem for Linux***, é uma camada de compatibilidade que permite executar distribuições Linux
 nativamente no Windows, utilizando uma arquitetura baseada em um kernel completo Linux completo integrado ao sistema.\
 
-Veja [Requisitos mínimos do WSL 2](Extras.md#requisitos-mínimos-do-wsl-2) nos Extras.
+> Veja [Requisitos mínimos do WSL 2](Extras.md#requisitos-mínimos-do-wsl-2) nos Extras.
 
 ### Terminal do Windows
 
@@ -98,9 +98,25 @@ Existem duas maneiras de instalar: pelos **comandos do WSL** ou pela **Windows S
 considere instalar o Ubuntu (sem versão) pois essa distribuição já vem com diversas ferramentas úteis para
 desenvolvimento pré-instaladas.
 
-### Opção 1 - Instalação via comandos
+### Opção 1 - Instalação via Windows Store
 
-#### 1.1. Execute o comando a seguir para instalar o `Ubuntu` (sem versão) como o Linux padrão:
+#### 1.1. Basta acessar o Windows Store e procurar pelo nome da distribuição Linux desejada e clicar em instalar.
+
+![Linux distros](assets/img/linux-distros.png)
+
+#### 1.2. após a instalação, clique em "Abrir" para acessar o terminal e criar a conta de usuário UNIX padrão.
+
+> O nome de usuário não pode conter espaços ou caracteres especiais. Você pode usar letras, números e o caractere `-`
+> (hífen). A senha deve ser forte, com pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e
+> caracteres especiais. Esta senha será usada para instalar pacotes e realizar operações de superusuário.
+
+![Crie conta de usuário UNIX padrão](assets/img/create-default-unix-user-account.png)
+
+#### 1.3. Após a instalação, o Ubuntu estará disponível no menu Iniciar do Windows.
+
+### Opção 2 - Instalação via comandos
+
+#### 2.1. Execute o comando a seguir para instalar o `Ubuntu` (sem versão) como o Linux padrão:
 
 ```bash
 wsl --install
@@ -109,32 +125,20 @@ wsl --install
 Se você quiser instalar uma versão diferente do Ubuntu, execute o comando `wsl -l -o` para listar as distribuições 
 disponíveis. Instale a versão escolhida com o comando `wsl --install -d [nome-da-distribuicao]`.
 
-#### 1.2. Você deverá criar um **nome de usuário** e uma **senha**.
+#### 2.2. Você deverá criar um **nome de usuário** e uma **senha** do usuário UNIX padrão.
 
-O nome de usuário não pode conter espaços ou caracteres especiais. Você pode usar letras, números e o caractere `-`
-(hífen). A senha deve ser forte, com pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e
-caracteres especiais. Esta senha será usada para instalar pacotes e realizar operações de superusuário.
+> O nome de usuário não pode conter espaços ou caracteres especiais. Você pode usar letras, números e o caractere `-`
+> (hífen). A senha deve ser forte, com pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e
+> caracteres especiais. Esta senha será usada para instalar pacotes e realizar operações de superusuário.
 
-#### 1.3. Com êxito na operação, pode ser necessário **reiniciar o sistema para que as alterações entrem em vigor**.
+#### 2.3. Com êxito na operação, pode ser necessário **reiniciar o sistema para que as alterações entrem em vigor**.
 
-#### 1.4. Para abrir uma nova janela do Ubuntu, basta digitar `Ubuntu` no menu Iniciar e clicar no ícone do Ubuntu.
-
-> [!NOTE]
-> O Ubuntu não estará imediatamente disponível no Windows Terminal. Inicie uma nova sessão do Terminal.
+#### 2.4. Para abrir uma nova janela do Ubuntu, basta digitar `Ubuntu` no menu Iniciar e clicar no ícone do Ubuntu.
 
 ![WSL2 working!](assets/img/wsl2-working.png)
 
-### Opção 2 - Instalação via Windows Store
-
-#### 2.1. Basta acessar o Windows Store e procurar pelo nome da distribuição Linux desejada e clicar em instalar.
-
-![Linux distros](assets/img/linux-distros.png)
-
-#### 2.2. após a instalação, clique em "Abrir" para acessar o terminal e criar a conta de usuário UNIX padrão.
-
-![Crie conta de usuário UNIX padrão](assets/img/create-default-unix-user-account.png)
-
-> *Parabêns, o seu WSL 2 já está funcionando!*
+> [!NOTE]
+> O Ubuntu não estará imediatamente disponível no Windows Terminal. Inicie uma nova sessão do Terminal.
 
 ### Conhecendo e Configurando o WSL
 
@@ -165,6 +169,8 @@ Verifique nos **Extras** como integrar o WSL 2 com as IDEs:
 - [Integração com o Visual Studio Code (VSCode)](Extras.md#integração-com-vscode)
 - [Integração com o PhpStorm (PS)](Extras.md#integração-com-phpstorm)
 
+> *Parabêns, o seu WSL 2 já está funcionando!*
+ 
 # Docker 
 
 ## O que é o Docker
@@ -172,37 +178,45 @@ Verifique nos **Extras** como integrar o WSL 2 com as IDEs:
 O Docker é uma plataforma 'open source' de containers que permite empacotar aplicativos e as suas dependências num 
 ambiente isolado e portátil.
 
-> Veja [Vantagens & Desvantagens](Extras.md#vantagens--desvantagens) do Docker nos Extras.
+> Veja [Vantagens & Desvantagens](Extras.md#vantagens--desvantagens) do Docker nos **Extras**.
 
 ## Docker no Windows
 
-Há ao menos 4 modos de usar o Docker no Windows, no entanto, iremos optar pelo **Docker Desktop com WSL 2**.
+Há ao menos 4 modos de usar o Docker no Windows:
 
-> - **Docker Toolbox** - o desempenho do Toolbox pode ser muito ruim. Recomendado para versões antigas do Windows (Xp, 
-Vista, 7, 8 e 8.1);
-> - **Docker Desktop com Hyper-V** - Necessita da versão **PRO** do Windows 10/11, portanto é necessário comprá-la.
-> - **Docker Engine** (Docker Nativo) - diretamente instalado no WSL 2 é viável, todavia a manutenção e segurança pode 
-ser um desafiante para usuários iniciantes.
+| Opções                        | Descrição                                                                                                                  |
+|:------------------------------|:---------------------------------------------------------------------------------------------------------------------------|
+| Docker Toolbox                | o desempenho do Toolbox pode ser muito ruim. Recomendado para versões antigas do Windows (Xp, Vista, 7, 8 e 8.1).          |
+| Docker Desktop com Hyper-V    | Necessita da versão **PRO** do Windows 10/11, portanto é necessário comprá-la.                                             |
+| Docker Engine (Docker Nativo) | Diretamente instalado no WSL 2 é viável, todavia a manutenção e segurança pode ser um desafiante para usuários iniciantes. |
+| **Docker Desktop com WSL 2**  | Tem um grande desempenho e consome menos recursos quando comparado ao Docker Toolbox ou Docker Desktop com Hyper-V.       |
 
-Docker Desktop com WSL 2 tem um grande desempenho e consome menos recursos quando comparado ao Docker Toolbox ou Docker 
-Desktop com Hyper-V.
+> [!IMPORTANT]
+> Ao longo desta documentação, usaremos o **Docker Desktop integrado ao WSL 2**, por ser uma opção prática e amplamente adotada.
 
 ## Instalação do Docker Desktop (com WSL 2)
 
+### 1. Baixe o instalador
+
 Baixe neste link: <a href="https://www.docker.com/products/docker-desktop/" target="_blank">https://www.docker.com/products/docker-desktop/ ↗️</a> e instale o Docker Desktop.
 
-> 🍀 Se ao executar o instalador aparecer uma janela com erro `Erro - Este Aplicativo Não Pode ser executado em seu 
+### 2. Instalação
+
+Execute o instalador e siga as instruções. O instalador irá baixar e instalar o Docker Desktop, além de configurar o
+WSL 2 e o Hyper-V, se necessário.
+
+> [!IMPORTANT]
+> Durante a instalação mantenha a opção de suar o WSL 2 habilitada:
+> ![Use WSL 2 instead of Hyper-V (recommended)](assets/img/use-wsl2-instead-of-hyper-v.png)
+
+> Se ao executar o instalador aparecer uma janela com erro `Erro - Este Aplicativo Não Pode ser executado em seu 
 > computador`, provavelmente você baixou uma versão incompativel com o seu pc.
-> 
-> No Windows, verifique a arquitetura do sistema acessando **Configurações** &rarr; **Sistema** &rarr; **Sobre**: 
+>
+> No Windows, verifique a arquitetura do sistema acessando **Configurações** | **Sistema** | **Sobre**:
 > - 64-bit Operating System, x64-based processor &rarr; Docker AMD64.
 > - 64-bit Operating System, ARM-based processor &rarr; Docker ARM64.
 
-<span style="color:#ffffff;background-color:saddlebrown;width:100%;display:block;padding:.8rem 1rem">
-⚠️ Importante - Durante a instalação mantenha a opção de suar o WSL 2 habilitada:
-</span>
-
-![Use WSL 2 instead of Hyper-V (recommended)](assets/img/use-wsl2-instead-of-hyper-v.png)
+### 3. Conta Docker
 
 Logo após a instalação, será pedido para conectar com a sua conta do Docker. Faça o login (crie uma conta se não tiver) 
 e siga as instruções.
@@ -221,7 +235,7 @@ wsl -l -v
 
 ![Distribuições Linux rodando no WSL 2](assets/img/wsl-docker-desktop-running.png)
 
-### Ativar o Docker na distribuição Linux
+### 4. Ativar o Docker na distribuição Linux
 
 Para o Docker funcionar na sua distribuição Linux, você precisa ativá-lo no painel do `Docker Desktop`. Abra a 
 `interface` do `Docker Desktop`, clique no ícone de engrenagem no canto superior direito, vá em `Resources` | 
@@ -230,30 +244,31 @@ a imagem abaixo:
 
 ![Ativar Docker na distribuição Linux](assets/img/docker-desktop-wsl-integration.png)
 
-### Configuranndo o Docker Desktop
+### 5. Configurações adicionais (Recomendado)
 
-- Veja [Otimizar recursos do Docker Desktop](Extras.md#otimizar-recursos-do-docker-desktop) nos Extras (Recomendado).
-- Veja [Aplicar autoMemoryReclaim no WSL 2](Extras.md#aplicar-automemoryreclaim-no-wsl-2) nos Extras (Recomendado).
+- Leia [Otimizar recursos do Docker Desktop](Extras.md#otimizar-recursos-do-docker-desktop) nos Extras.
+- Leia [Aplicar autoMemoryReclaim no WSL 2](Extras.md#aplicar-automemoryreclaim-no-wsl-2) nos Extras.
 
-# Shell do Ubuntu
+> *Pronto! Finalizado o Docker!*
 
-<span style="color:#ffffff;background-color:saddlebrown;width:100%;display:block;padding:.8rem 1rem">
-⚠️ A partir deste ponto, todos os comandos deverão ser executados no terminal do <b>Ubuntu</b>.
-</span>
+# Terminal do Ubuntu
+
+> [!IMPORTANT]
+> A partir deste ponto, todos os comandos deverão ser executados no terminal do **Ubuntu**.
 
 Novamente, para acessar o shell da distribuição Ubuntu que instalou, abrar um nova aba do Terminal do Windows
 (recomendado) ou digite `wsl` no PowerShell.
 
-> Para uma experiência de shell mais moderna e eficiente, use o *framework* **Oh My Zsh**. Consulte o arquivo 
-> [Extras.md](Extras.md#oh-my-zsh) para instruções de instalação.
+Caso tenha **instalado alguma distribuição Ubuntu diferente da padrão do WSL 2**, algumas ferramentas podem estar 
+faltando, instale-as agora:
 
-> 🍀 Caso tenha **instalado alguma distribuição Ubuntu diferente da padrão do WSL 2**, algumas ferramentas podem estar 
-> faltando, instale-as agora:
->
->```bash
->sudo apt update &&
->sudo apt install make curl wget git zip unzip vim unrar-free tar gzip bzip2 xz-utils p7zip-full p7zip-rar -y
->```
+```bash
+sudo apt update &&
+sudo apt install make curl wget git zip unzip vim unrar-free tar gzip bzip2 xz-utils p7zip-full p7zip-rar -y
+```
+
+> *Para uma experiência de shell mais moderna e eficiente, use o *framework* **Oh My Zsh**. 
+> Veja nos [Extras](Extras.md#oh-my-zsh) como instalar e configurar o seu shell.
 
 # Git & GitHub
 
