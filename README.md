@@ -70,12 +70,12 @@ nativamente no Windows, utilizando uma arquitetura baseada em um kernel completo
 
 Use o Windows Terminal para desenvolver no Windows e também para acessar o WSL 2. Instale-o pelo **Windows Store**.
 
-<span style="color:#ffffff;background-color:saddlebrown;width:100%;display:block;padding:.8rem 1rem">
-⚠️ Esta documentação faz o uso do 
-<a href="https://docs.microsoft.com/pt-br/windows/terminal/get-started/" target="_blank">Windows Terminal</a> como 
-terminal padrão para desenvolvimento no Windows.
-</span>
+> [!IMPORTANT]
+> ️ Esta documentação faz o uso do 
+> <a href="https://docs.microsoft.com/pt-br/windows/terminal/get-started/" target="_blank">Windows Terminal</a> como 
+> terminal padrão para desenvolvimento no Windows.
 
+> [!TIP]
 > A experiência é muito melhor que o terminal padrão do Windows. Por padrão, o Windows Terminal identificará e agregará 
 > o shell do Ubuntu (que iremos instalar a seguir) e os principais shells instalados no Windows, como PowerShell, CMD e 
 > WSL numa única janela, além de permitir personalização de cores, temas, atalhos e muito mais.\
